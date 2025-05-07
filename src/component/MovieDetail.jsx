@@ -1,44 +1,20 @@
 import { useContext } from "react";
 import { MovieContext } from "../context/movieContext";
 import { useAsyncDetailMovieData } from "../hooks/movieData";
+import { DetailButton } from "./Button";
 
 export default function MovieDetail() {
-  const { detailMovies, setDetailMovies, token, navigate } =
-    useContext(MovieContext);
+  const { detailMovies, setDetailMovies, token } = useContext(MovieContext);
 
   useAsyncDetailMovieData(setDetailMovies, token);
 
   if (!detailMovies)
     return (
       <div className="flex flex-col min-h-screen justify-center items-center">
-        <p className="text-3xl">잘못된 페이지 입니다.</p>
+        <p className="text-3xl">Loading...</p>
         <div className="flex gap-2">
-          <button
-            className="
-        bg-purple-300 hover:bg-purple-600 active:bg-purple-900
-          mt-3.5
-          p-2
-        text-white
-          cursor-pointer"
-            onClick={() => {
-              navigate(-1);
-            }}
-          >
-            뒤로가기
-          </button>
-          <button
-            className="
-        bg-purple-300 hover:bg-purple-600 active:bg-purple-900
-          mt-3.5
-          p-2
-        text-white
-          cursor-pointer"
-            onClick={() => {
-              navigate("/");
-            }}
-          >
-            메인으로
-          </button>
+          <DetailButton label="뒤로가기" location={-1} />
+          <DetailButton label="메인으로" location="/" />
         </div>
       </div>
     );
@@ -97,18 +73,7 @@ export default function MovieDetail() {
           줄거리: {detailMovies.overview ? detailMovies.overview : "정보 없음"}
         </p>
         <div>
-          <button
-            className="
-        bg-purple-300 hover:bg-purple-600 active:bg-purple-900
-          p-2
-        text-white
-          cursor-pointer"
-            onClick={() => {
-              navigate(-1);
-            }}
-          >
-            뒤로가기
-          </button>
+          <DetailButton label="뒤로가기" location={-1} />
         </div>
       </div>
     </div>

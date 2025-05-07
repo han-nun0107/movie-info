@@ -17,6 +17,7 @@ export function useAsyncMovieData(setMovies, token) {
           options
         );
         const data = await respone.json();
+        console.log(data);
 
         if (data.error) {
           setMovies(null);
@@ -51,6 +52,7 @@ export function useAsyncDetailMovieData(setDetailMovies, token) {
           options
         );
         const data = await respone.json();
+        console.log(data);
 
         if (data.success === false) {
           setDetailMovies(null);
