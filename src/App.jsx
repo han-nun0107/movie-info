@@ -1,11 +1,31 @@
-import movieListData from "./data/movieListData.json";
 import MovieCard from "./component/MovieCard";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
+import { useContext, useEffect } from "react";
+import { MovieContext } from "./context/movieContext";
 
 function App() {
-  const movies = movieListData.results;
+  /* 틀렸던 곳 */
+  const { movies, setMovies, token } = useContext(MovieContext);
+  useEffect(() => {
+    const options = {
+      method: "GET",
+      headers: {
+        accept: "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    fetch(
+      "https://api.themoviedb.org/3/movie/popular?language=ko-kr&page=1",
+      options
+    )
+      .then((res) => res.json())
+      .then((res) => {
+        setMovies(res.results);
+      })
+      .catch((err) => console.error(err));
+  }, [movies, setMovies, token]);
 
   return (
     <>
@@ -17,15 +37,19 @@ function App() {
         p-6
         gap-6"
         >
-          {movies.map((movie) => (
-            <MovieCard
-              key={movie.id}
-              title={movie.title}
-              poster_path={movie.poster_path}
-              vote_average={movie.vote_average.toFixed(2)}
-              id={movie.id}
-            />
-          ))}
+          {/* 틀렸던 곳 */}
+          {movies &&
+            movies
+              .filter((movie) => movie.adult === false)
+              .map((movie) => (
+                <MovieCard
+                  key={movie.id}
+                  title={movie.title}
+                  poster_path={movie.poster_path}
+                  vote_average={movie.vote_average.toFixed(2)}
+                  id={movie.id}
+                />
+              ))}
         </div>
       </div>
 

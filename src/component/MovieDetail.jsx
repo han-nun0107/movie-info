@@ -8,9 +8,21 @@ export default function MovieDetail() {
 
   if (!movie)
     return (
-      <div>
+      <div className="flex flex-col min-h-screen justify-center items-center">
         <p>정보 없음</p>
         <p>id: {movieId}</p>
+        <button
+          className="
+        bg-purple-300 hover:bg-purple-600 active:bg-purple-900
+          p-2
+        text-white
+          cursor-pointer"
+          onClick={() => {
+            navigate(-1);
+          }}
+        >
+          뒤로가기
+        </button>
       </div>
     );
 
