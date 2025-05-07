@@ -1,32 +1,45 @@
 import { useContext } from "react";
 import { MovieContext } from "../context/movieContext";
-import { useParams } from "react-router-dom";
 import { useAsyncDetailMovieData } from "../hooks/movieData";
 
 export default function MovieDetail() {
   const { detailMovies, setDetailMovies, token, navigate } =
     useContext(MovieContext);
-  const { movieId } = useParams();
 
-  // useFetchMovieData(setMovies, token);
   useAsyncDetailMovieData(setDetailMovies, token);
+
   if (!detailMovies)
     return (
       <div className="flex flex-col min-h-screen justify-center items-center">
-        <p>정보 없음</p>
-        <p>id: {movieId}</p>
-        <button
-          className="
+        <p className="text-3xl">잘못된 페이지 입니다.</p>
+        <div className="flex gap-2">
+          <button
+            className="
         bg-purple-300 hover:bg-purple-600 active:bg-purple-900
+          mt-3.5
           p-2
         text-white
           cursor-pointer"
-          onClick={() => {
-            navigate(-1);
-          }}
-        >
-          뒤로가기
-        </button>
+            onClick={() => {
+              navigate(-1);
+            }}
+          >
+            뒤로가기
+          </button>
+          <button
+            className="
+        bg-purple-300 hover:bg-purple-600 active:bg-purple-900
+          mt-3.5
+          p-2
+        text-white
+          cursor-pointer"
+            onClick={() => {
+              navigate("/");
+            }}
+          >
+            메인으로
+          </button>
+        </div>
       </div>
     );
 
@@ -63,12 +76,17 @@ export default function MovieDetail() {
       >
         <div
           className="
-        flex flex-row
-        gap-2
+        flex flex-col
+        items-center
         "
         >
-          <p>제목: {detailMovies.title}</p>
-          <p>평점: {detailMovies.vote_average?.toFixed(2)}</p>
+          <p>제목: {detailMovies.title ? detailMovies.title : "정보 없음"}</p>
+          <p>
+            평점:{" "}
+            {detailMovies.vote_average?.toFixed(2)
+              ? detailMovies.vote_average?.toFixed(2)
+              : "정보 없음"}
+          </p>
         </div>
         <p>
           장르:{" "}

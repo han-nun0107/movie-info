@@ -35,6 +35,7 @@ export function useAsyncDetailMovieData(setDetailMovies, token) {
   const { movieId } = useParams();
 
   useEffect(() => {
+    setDetailMovies(null);
     const options = {
       method: "GET",
       headers: {
@@ -51,7 +52,7 @@ export function useAsyncDetailMovieData(setDetailMovies, token) {
         );
         const data = await respone.json();
 
-        if (data.error) {
+        if (data.success === false) {
           setDetailMovies(null);
         } else {
           setDetailMovies(data);
@@ -63,5 +64,3 @@ export function useAsyncDetailMovieData(setDetailMovies, token) {
     fetchDetailMovie();
   }, [movieId, setDetailMovies, token]);
 }
-
-/* async await */
