@@ -6,7 +6,14 @@ export default function MovieDetail() {
   const movie = movieDetailData.find((m) => m.id === Number(movieId));
   const navigate = useNavigate();
 
-  if (!movie) return <div>정보 없음</div>;
+  if (!movie)
+    return (
+      <div>
+        <p>정보 없음</p>
+        <p>id: {movieId}</p>
+      </div>
+    );
+
   return (
     <div
       className="
@@ -51,7 +58,11 @@ export default function MovieDetail() {
         <p className="text-balance text-center">줄거리: {movie.overview}</p>
         <div>
           <button
-            className="bg-purple-300 text-white active:bg-purple-600"
+            className="
+        bg-purple-300 hover:bg-purple-600 active:bg-purple-900
+          p-2
+        text-white
+          cursor-pointer"
             onClick={() => {
               navigate(-1);
             }}

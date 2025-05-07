@@ -13,7 +13,7 @@ export default function Layout() {
               type="text"
               className="
               w-full
-              bg-gray-300 
+            bg-gray-300 
               border border-gray-300 rounded 
               focus:outline-0"
             />
@@ -22,8 +22,9 @@ export default function Layout() {
             <button
               className="
             bg-purple-400 text-white
-            rounded px-2 py-2
-            cursor-pointer
+              rounded
+              px-2 py-2
+              cursor-pointer
             active:bg-purple-600 active:text-white
             "
             >
@@ -32,8 +33,9 @@ export default function Layout() {
             <button
               className="
             bg-purple-400 text-white
-            rounded px-2 py-2
-            cursor-pointer
+              rounded
+              px-2 py-2
+              cursor-pointer
             active:bg-purple-600 active:text-white
             "
             >
