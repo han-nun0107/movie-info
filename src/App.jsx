@@ -2,31 +2,14 @@ import MovieCard from "./component/MovieCard";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { MovieContext } from "./context/movieContext";
+import { useFetchMovieData } from "./hooks/movieData";
 
 function App() {
   /* 틀렸던 곳 */
   const { movies, setMovies, token } = useContext(MovieContext);
-  useEffect(() => {
-    const options = {
-      method: "GET",
-      headers: {
-        accept: "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    };
-    fetch(
-      "https://api.themoviedb.org/3/movie/popular?language=ko-kr&page=1",
-      options
-    )
-      .then((res) => res.json())
-      .then((res) => {
-        setMovies(res.results);
-      })
-      .catch((err) => console.error(err));
-  }, [movies, setMovies, token]);
-
+  useFetchMovieData(setMovies, token);
   return (
     <>
       <div>

@@ -1,8 +1,8 @@
 import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 export function useFetchMovieData(setMovies, token) {
   useEffect(() => {
-    const token = import.meta.env.VITE_MOVIE_TOKEN_KEY;
     const options = {
       method: "GET",
       headers: {
@@ -21,3 +21,25 @@ export function useFetchMovieData(setMovies, token) {
       .catch((err) => console.error(err));
   }, [setMovies, token]);
 }
+
+export function useDetailMovieData(setDetailMovies, token) {
+  const { movieId } = useParams();
+  useEffect(() => {
+    const options = {
+      method: "GET",
+      headers: {
+        accept: "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    fetch(
+      `https://api.themoviedb.org/3/movie/${movieId}?language=ko-kr`,
+      options
+    )
+      .then((res) => res.json())
+      .then((res) => setDetailMovies(res))
+      .catch((err) => console.error(err));
+  }, [movieId, setDetailMovies, token]);
+}
+/* async await */
