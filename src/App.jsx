@@ -4,12 +4,12 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { useContext } from "react";
 import { MovieContext } from "./context/movieContext";
-import { useFetchMovieData } from "./hooks/movieData";
+import { useAsyncMovieData } from "./hooks/movieData";
 
 function App() {
   /* 틀렸던 곳 */
   const { movies, setMovies, token } = useContext(MovieContext);
-  useFetchMovieData(setMovies, token);
+  useAsyncMovieData(setMovies, token);
   return (
     <>
       <div>

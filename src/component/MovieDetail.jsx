@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { MovieContext } from "../context/movieContext";
 import { useParams } from "react-router-dom";
-import { useDetailMovieData } from "../hooks/movieData";
+import { useAsyncDetailMovieData } from "../hooks/movieData";
 
 export default function MovieDetail() {
   const { detailMovies, setDetailMovies, token, navigate } =
@@ -9,7 +9,7 @@ export default function MovieDetail() {
   const { movieId } = useParams();
 
   // useFetchMovieData(setMovies, token);
-  useDetailMovieData(setDetailMovies, token);
+  useAsyncDetailMovieData(setDetailMovies, token);
   if (!detailMovies)
     return (
       <div className="flex flex-col min-h-screen justify-center items-center">
