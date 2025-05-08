@@ -5,6 +5,9 @@ import { DetailButton } from "./Button";
 
 export default function MovieDetail() {
   const { detailMovies, setDetailMovies, token } = useContext(MovieContext);
+  const score = detailMovies?.vote_average?.toFixed(2);
+  const title = detailMovies?.title;
+  const overview = detailMovies?.overview;
 
   useAsyncDetailMovieData(setDetailMovies, token);
 
@@ -56,13 +59,8 @@ export default function MovieDetail() {
         items-center
         "
         >
-          <p>제목: {detailMovies.title ? detailMovies.title : "정보 없음"}</p>
-          <p>
-            평점:{" "}
-            {detailMovies.vote_average?.toFixed(2)
-              ? detailMovies.vote_average?.toFixed(2)
-              : "정보 없음"}
-          </p>
+          <p>제목: {title ? title : "정보 없음"}</p>
+          <p>평점: {score ? score : "정보 없음"}</p>
         </div>
         <p>
           장르:{" "}
@@ -70,7 +68,7 @@ export default function MovieDetail() {
         </p>
         <p className="text-balance text-center">
           {/* 틀렸던 부분 3항 연산자 */}
-          줄거리: {detailMovies.overview ? detailMovies.overview : "정보 없음"}
+          줄거리: {overview ? overview : "정보 없음"}
         </p>
         <div>
           <DetailButton label="뒤로가기" location={-1} />
