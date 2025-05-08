@@ -7,6 +7,10 @@ export function MovieProvider({ children }) {
   const [detailMovies, setDetailMovies] = useState(null);
   const navigate = useNavigate();
 
+  /* 검색기능 */
+  const [debounceValue, setDebounceValue] = useState("");
+  const [input, setInput] = useState("");
+
   const token = import.meta.env.VITE_MOVIE_TOKEN_KEY;
 
   return (
@@ -18,6 +22,10 @@ export function MovieProvider({ children }) {
         navigate,
         detailMovies,
         setDetailMovies,
+        debounceValue,
+        setDebounceValue,
+        input,
+        setInput,
       }}
     >
       {children}

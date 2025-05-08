@@ -1,6 +1,19 @@
+import { useContext, useEffect } from "react";
 import { Link, Outlet } from "react-router-dom";
+import { MovieContext } from "../context/movieContext";
+import { useDebounce } from "../hooks/searchMovie";
 
 export default function Layout() {
+  const { input, setInput } = useContext(MovieContext);
+
+  const debounceInput = useDebounce(input, 500);
+
+  useEffect(() => {
+    if (debounceInput) {
+      console.log("호출", debounceInput);
+    }
+  }, [debounceInput]);
+
   return (
     <>
       <header className="w-full bg-black px-3 py-3 fixed">
@@ -11,6 +24,8 @@ export default function Layout() {
           <div>
             <input
               type="text"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
               className="
               w-full
             bg-gray-300 
