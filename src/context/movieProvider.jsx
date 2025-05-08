@@ -3,8 +3,8 @@ import { MovieContext } from "./movieContext";
 import { useNavigate } from "react-router-dom";
 
 export function MovieProvider({ children }) {
-  const [movies, setMovies] = useState([]);
-  const [detailMovies, setDetailMovies] = useState([]);
+  const [movies, setMovies] = useState(null);
+  const [detailMovies, setDetailMovies] = useState(null);
   const navigate = useNavigate();
 
   const token = import.meta.env.VITE_MOVIE_TOKEN_KEY;
