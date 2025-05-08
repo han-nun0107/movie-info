@@ -1,16 +1,23 @@
-import { useNavigate, useParams } from "react-router-dom";
-import movieDetailData from "../data/movieDetailData.json";
+import { useContext } from "react";
+import { MovieContext } from "../context/movieContext";
+import { useAsyncDetailMovieData } from "../hooks/movieData";
+import { DetailButton } from "./Button";
 
 export default function MovieDetail() {
-  const { movieId } = useParams();
-  const movie = movieDetailData.find((m) => m.id === Number(movieId));
-  const navigate = useNavigate();
+  const { detailMovies, setDetailMovies, token } = useContext(MovieContext);
+  useAsyncDetailMovieData(setDetailMovies, token);
+  const score = detailMovies?.vote_average?.toFixed(2);
+  const overview = detailMovies?.overview;
+  const title = detailMovies?.title;
 
-  if (!movie)
+  if (!detailMovies)
     return (
-      <div>
-        <p>정보 없음</p>
-        <p>id: {movieId}</p>
+      <div className="flex flex-col min-h-screen justify-center items-center">
+        <p className="text-3xl">Loading...</p>
+        <div className="flex gap-2">
+          <DetailButton label="뒤로가기" location={-1} />
+          <DetailButton label="메인으로" location="/" />
+        </div>
       </div>
     );
 
@@ -30,7 +37,7 @@ export default function MovieDetail() {
       "
       >
         <img
-          src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
+          src={`https://image.tmdb.org/t/p/w200${detailMovies.poster_path}`}
           alt=""
           className="w-[60%]"
         />
@@ -47,28 +54,23 @@ export default function MovieDetail() {
       >
         <div
           className="
-        flex flex-row
-        gap-2
+        flex flex-col
+        items-center
         "
         >
-          <p>제목: {movie.title}</p>
-          <p>평점: {movie.vote_average.toFixed(2)}</p>
+          <p>제목: {title ? title : "정보 없음"}</p>
+          <p>평점: {score ? score : "정보 없음"}</p>
         </div>
-        <p>장르: {movie.genres.map((j) => j.name).join(", ")}</p>
-        <p className="text-balance text-center">줄거리: {movie.overview}</p>
+        <p>
+          장르:{" "}
+          {detailMovies?.genres?.map((j) => j.name).join(", ") ?? "장르 없음"}
+        </p>
+        <p className="text-balance text-center">
+          {/* 틀렸던 부분 3항 연산자 */}
+          줄거리: {overview ? overview : "정보 없음"}
+        </p>
         <div>
-          <button
-            className="
-        bg-purple-300 hover:bg-purple-600 active:bg-purple-900
-          p-2
-        text-white
-          cursor-pointer"
-            onClick={() => {
-              navigate(-1);
-            }}
-          >
-            뒤로가기
-          </button>
+          <DetailButton label="뒤로가기" location={-1} />
         </div>
       </div>
     </div>

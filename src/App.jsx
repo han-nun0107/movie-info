@@ -1,12 +1,15 @@
-import movieListData from "./data/movieListData.json";
 import MovieCard from "./component/MovieCard";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
+import { useContext } from "react";
+import { MovieContext } from "./context/movieContext";
+import { useAsyncMovieData } from "./hooks/movieData";
 
 function App() {
-  const movies = movieListData.results;
-
+  /* 틀렸던 곳 */
+  const { movies, setMovies, token } = useContext(MovieContext);
+  useAsyncMovieData(setMovies, token);
   return (
     <>
       <div>
@@ -17,15 +20,18 @@ function App() {
         p-6
         gap-6"
         >
-          {movies.map((movie) => (
-            <MovieCard
-              key={movie.id}
-              title={movie.title}
-              poster_path={movie.poster_path}
-              vote_average={movie.vote_average.toFixed(2)}
-              id={movie.id}
-            />
-          ))}
+          {/* 틀렸던 곳 */}
+          {movies
+            ?.filter((movie) => movie.adult === false)
+            .map((movie) => (
+              <MovieCard
+                key={movie.id}
+                title={movie.title}
+                poster_path={movie.poster_path}
+                vote_average={movie.vote_average.toFixed(2)}
+                id={movie.id}
+              />
+            ))}
         </div>
       </div>
 
