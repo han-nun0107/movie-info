@@ -21,18 +21,17 @@ function App() {
         gap-6"
         >
           {/* 틀렸던 곳 */}
-          {movies &&
-            movies
-              .filter((movie) => movie.adult === false)
-              .map((movie) => (
-                <MovieCard
-                  key={movie.id}
-                  title={movie.title}
-                  poster_path={movie.poster_path}
-                  vote_average={movie.vote_average.toFixed(2)}
-                  id={movie.id}
-                />
-              ))}
+          {movies
+            ?.filter((movie) => movie.adult === false)
+            .map((movie) => (
+              <MovieCard
+                key={movie.id}
+                title={movie.title}
+                poster_path={movie.poster_path}
+                vote_average={movie.vote_average.toFixed(2)}
+                id={movie.id}
+              />
+            ))}
         </div>
       </div>
 

@@ -5,11 +5,9 @@ import { DetailButton } from "./Button";
 
 export default function MovieDetail() {
   const { detailMovies, setDetailMovies, token } = useContext(MovieContext);
-  const score = detailMovies?.vote_average?.toFixed(2);
-  const title = detailMovies?.title;
-  const overview = detailMovies?.overview;
-
   useAsyncDetailMovieData(setDetailMovies, token);
+  const score = detailMovies?.vote_average?.toFixed(2);
+  const overview = detailMovies?.overview;
 
   if (!detailMovies)
     return (
@@ -59,12 +57,12 @@ export default function MovieDetail() {
         items-center
         "
         >
-          <p>제목: {title ? title : "정보 없음"}</p>
+          <p>제목: {detailMovies.title ? detailMovies.title : "정보 없음"}</p>
           <p>평점: {score ? score : "정보 없음"}</p>
         </div>
         <p>
           장르:{" "}
-          {detailMovies.genres?.map((j) => j.name).join(", ") ?? "장르 없음"}
+          {detailMovies?.genres?.map((j) => j.name).join(", ") ?? "장르 없음"}
         </p>
         <p className="text-balance text-center">
           {/* 틀렸던 부분 3항 연산자 */}
