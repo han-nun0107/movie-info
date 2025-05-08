@@ -44,7 +44,9 @@ export default function Layout() {
           </div>
         </nav>
       </header>
-      <Outlet />
+      <main className="pt-[60px]">
+        <Outlet />
+      </main>
     </>
   );
 }
