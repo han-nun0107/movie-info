@@ -8,6 +8,7 @@ export default function MovieDetail() {
   useAsyncDetailMovieData(setDetailMovies, token);
   const score = detailMovies?.vote_average?.toFixed(2);
   const overview = detailMovies?.overview;
+  const title = detailMovies?.title;
 
   if (!detailMovies)
     return (
@@ -57,7 +58,7 @@ export default function MovieDetail() {
         items-center
         "
         >
-          <p>제목: {detailMovies.title ? detailMovies.title : "정보 없음"}</p>
+          <p>제목: {title ? title : "정보 없음"}</p>
           <p>평점: {score ? score : "정보 없음"}</p>
         </div>
         <p>
