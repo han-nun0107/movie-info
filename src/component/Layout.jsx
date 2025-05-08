@@ -3,7 +3,7 @@ import { Link, Outlet } from "react-router-dom";
 export default function Layout() {
   return (
     <>
-      <header className="w-full bg-black px-3 py-3">
+      <header className="w-full bg-black px-3 py-3 fixed">
         <nav className="grid grid-cols-[.2fr_1fr_.3fr] items-center">
           <Link to={"/"}>
             <div className="text-2xl text-white font-black">로고</div>
