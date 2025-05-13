@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { LayoutInput } from "./layoutInput/LayoutInput";
 import { MovieContext } from "../context/movieContext";
+import supabase from "../../supabaseClient";
 
 export default function Join() {
   const { submit, setSubmit } = useContext(MovieContext);
@@ -15,7 +16,7 @@ export default function Join() {
   const isPassword = (password) =>
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/.test(password);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmit(true);
 
@@ -33,7 +34,32 @@ export default function Join() {
       return;
     }
 
-    alert("회원가입 성공!");
+    try {
+      const { data, error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          data: { name },
+        },
+      });
+
+      const userData = await supabase.from("user_table").insert({
+        id: data.user?.id,
+        email: data.user?.email,
+        created_at: data.user?.created_at,
+      });
+      console.log(userData);
+      if (error) {
+        console.error("회원가입 오류", error.message);
+        alert("가입 실패" + error.message);
+        return;
+      }
+      alert("가입 성공");
+      console.log("가입된 사용자:", data);
+    } catch (err) {
+      console.error("오류 발생", err);
+      alert("가입 중 오류가 발생 했습니다");
+    }
   };
 
   return (

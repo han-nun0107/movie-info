@@ -2,22 +2,38 @@ import { Link } from "react-router-dom";
 import { LayoutInput } from "./layoutInput/LayoutInput";
 import { useContext, useState } from "react";
 import { MovieContext } from "../context/movieContext";
+import supabase from "../../supabaseClient";
 
 export default function Login() {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [submit, setSubmit] = useState(false);
   const { navigate, setIsLogin } = useContext(MovieContext);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmit(true);
-    if (!formData.email || !formData.password) {
+    const { email, password } = formData;
+
+    if (!email || !password) {
       return;
     }
-    if (formData.email === "test@test.com" && formData.password === "123") {
-      alert("로그인");
-      navigate("/");
+    try {
+      const { error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+
+      if (error) {
+        alert("로그인 실패:" + error.message);
+        console.error("로그인 오류:", error);
+        return;
+      }
+      alert("로그인 완료");
       setIsLogin(true);
+      navigate("/");
+    } catch (err) {
+      alert("로그인 중 오류");
+      console.log("오류:", err);
     }
   };
 
