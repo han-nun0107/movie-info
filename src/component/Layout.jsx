@@ -81,7 +81,7 @@ export default function Layout() {
             ) : (
               <div>
                 <Link to="/login" className={`${btnColor}`}>
-                  로그
+                  로그인
                 </Link>
                 <Link to="/join" className={`${btnColor}`}>
                   회원가입
