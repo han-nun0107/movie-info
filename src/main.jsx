@@ -6,8 +6,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import MovieCard from "./component/MovieCard.jsx";
 import Layout from "./component/Layout.jsx";
 import { MovieProvider } from "./context/movieProvider.jsx";
-import Login from "./component/login.jsx";
-import Join from "./component/join.jsx";
+import Login from "./component/LoginPage.jsx";
+import Join from "./component/JoinPage.jsx";
 
 createRoot(document.getElementById("root")).render(
   <BrowserRouter>
