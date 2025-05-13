@@ -11,6 +11,10 @@ export function MovieProvider({ children }) {
   const [debounceValue, setDebounceValue] = useState("");
   const [input, setInput] = useState("");
 
+  /* 회원가입, 로그인 */
+  const [isLogin, setIsLogin] = useState(false);
+  const [submit, setSubmit] = useState(false);
+
   const token = import.meta.env.VITE_MOVIE_TOKEN_KEY;
 
   return (
@@ -26,6 +30,10 @@ export function MovieProvider({ children }) {
         setDebounceValue,
         input,
         setInput,
+        isLogin,
+        setIsLogin,
+        submit,
+        setSubmit,
       }}
     >
       {children}
