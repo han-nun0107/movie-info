@@ -1,46 +1,18 @@
-import { useContext, useEffect } from "react";
-import { Link, Links, Outlet } from "react-router-dom";
+import { useContext } from "react";
+import { Link, Outlet } from "react-router-dom";
 import { MovieContext } from "../context/movieContext";
-import { useDebounce } from "../hooks/searchMovie";
-import { fetchSearchedMovies } from "../utils/SearchMovie";
+import { useLayoutInput } from "../hooks/layoutInput";
+import { handleLogin } from "../utils/handleLogin";
 
 export default function Layout() {
-  const { input, setInput, setMovies, token, isLogin, setIsLogin } =
+  const { input, setInput, isLogin, userInfo, setIsLogin, navigate } =
     useContext(MovieContext);
 
-  const handleLogin = () => {
-    setIsLogin(false);
-  };
-
-  const debounceInput = useDebounce(input, 500);
-
-  useEffect(() => {
-    const search = async () => {
-      if (debounceInput.trim() === "") {
-        const res = await fetch(
-          "https://api.themoviedb.org/3/movie/popular?language=ko-KR&page=1",
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-              accept: "application/json",
-            },
-          }
-        );
-        const data = await res.json();
-        setMovies(data.results);
-        return;
-      }
-
-      const results = await fetchSearchedMovies(debounceInput, token);
-      setMovies(results);
-    };
-
-    search();
-  }, [debounceInput, setMovies, token]);
+  useLayoutInput();
 
   return (
     <>
-      <header className="w-full bg-black px-3 py-3 fixed z-10">
+      <header className="w-full bg-black px-4 py-3 fixed z-10">
         <nav className="grid grid-cols-[.2fr_1fr_.3fr] items-center">
           <Link to={"/"}>
             <div className="text-2xl text-white font-black">로고</div>
@@ -63,17 +35,19 @@ export default function Layout() {
                 <div>toggle</div>
                 <div className="group relative">
                   <img
-                    src="/assets/profile.jpg"
+                    src={userInfo.profileImageUrl}
                     alt=""
                     className="w-10 h-10 rounded-2xl "
                   />
                   <ul className="flex-col items-center justify-center gap-2 w-30 h-20 hidden group-hover:flex group-hover:absolute  bg-[#1a1a1a] text-[#fafafb] text-center">
-                    <li className="hover:underline cursor-pointer">관심목록</li>
                     <li
-                      onClick={handleLogin}
+                      onClick={(e) => handleLogin(e, { setIsLogin, navigate })}
                       className="hover:underline cursor-pointer"
                     >
                       로그아웃
+                    </li>
+                    <li className="hover:underline cursor-pointer">
+                      <Link to="/myPage">마이페이지</Link>
                     </li>
                   </ul>
                 </div>
@@ -91,7 +65,7 @@ export default function Layout() {
           </div>
         </nav>
       </header>
-      <main className="pt-15">
+      <main className="pt-16">
         <Outlet />
       </main>
     </>

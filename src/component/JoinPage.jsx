@@ -1,10 +1,12 @@
 import { useContext, useState } from "react";
 import { LayoutInput } from "./layoutInput/LayoutInput";
 import { MovieContext } from "../context/movieContext";
-import supabase from "../../supabaseClient";
+import { useSupabaseAuth } from "../auth";
+import { handleJoin } from "../utils/handleJoin";
 
 export default function Join() {
-  const { submit, setSubmit } = useContext(MovieContext);
+  const { submit, setSubmit, navigate } = useContext(MovieContext);
+  const { signUp } = useSupabaseAuth();
 
   const [formData, setFormData] = useState({
     email: "",
@@ -16,55 +18,14 @@ export default function Join() {
   const isPassword = (password) =>
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/.test(password);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setSubmit(true);
-
-    const { email, name, password, confirmPassword } = formData;
-
-    if (!email || !name || !password || !confirmPassword) return;
-
-    if (!isPassword(password)) {
-      alert("비밀번호는 영문 대소문자 + 숫자를 포함해 8자 이상이어야 합니다.");
-      return;
-    }
-
-    if (password !== confirmPassword) {
-      alert("비밀번호가 일치하지 않습니다.");
-      return;
-    }
-
-    try {
-      const { data, error } = await supabase.auth.signUp({
-        email,
-        password,
-        options: {
-          data: { name },
-        },
-      });
-
-      const userData = await supabase.from("user_table").insert({
-        id: data.user?.id,
-        email: data.user?.email,
-        created_at: data.user?.created_at,
-      });
-      console.log(userData);
-      if (error) {
-        console.error("회원가입 오류", error.message);
-        alert("가입 실패" + error.message);
-        return;
-      }
-      alert("가입 성공");
-      console.log("가입된 사용자:", data);
-    } catch (err) {
-      console.error("오류 발생", err);
-      alert("가입 중 오류가 발생 했습니다");
-    }
-  };
-
   return (
     <div className="flex flex-col justify-center items-center min-h-screen">
-      <form onSubmit={handleSubmit} action="">
+      <form
+        onSubmit={(e) =>
+          handleJoin(e, { setSubmit, formData, isPassword, signUp, navigate })
+        }
+        action=""
+      >
         <LayoutInput
           labelName="이메일"
           inputType="email"

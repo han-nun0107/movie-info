@@ -2,38 +2,32 @@ import { Link } from "react-router-dom";
 import { LayoutInput } from "./layoutInput/LayoutInput";
 import { useContext, useState } from "react";
 import { MovieContext } from "../context/movieContext";
-import supabase from "../../supabaseClient";
+import { useSupabaseAuth } from "../auth";
 
 export default function Login() {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [submit, setSubmit] = useState(false);
-  const { navigate, setIsLogin } = useContext(MovieContext);
+  const { navigate, setUserInfo } = useContext(MovieContext);
+  const { login } = useSupabaseAuth();
 
   const handleSubmit = async (e) => {
+    const { email, password } = formData;
     e.preventDefault();
     setSubmit(true);
-    const { email, password } = formData;
-
-    if (!email || !password) {
+    if (!formData.email || !formData.password) {
       return;
     }
     try {
-      const { error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      });
+      const result = await login({ email, password });
 
-      if (error) {
-        alert("로그인 실패:" + error.message);
-        console.error("로그인 오류:", error);
-        return;
+      if (result?.user) {
+        alert("로그인 성공");
+        setUserInfo(result?.user);
+        navigate("/");
       }
-      alert("로그인 완료");
-      setIsLogin(true);
-      navigate("/");
     } catch (err) {
-      alert("로그인 중 오류");
-      console.log("오류:", err);
+      alert("에러 발생");
+      console.log("에러 발생:", err);
     }
   };
 

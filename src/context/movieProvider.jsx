@@ -14,6 +14,10 @@ export function MovieProvider({ children }) {
   /* 회원가입, 로그인 */
   const [isLogin, setIsLogin] = useState(false);
   const [submit, setSubmit] = useState(false);
+  const [userInfo, setUserInfo] = useState(null);
+  
+  /* 좋아요 누른 영화 */
+  const [favoriteMovie, setFavoriteMovie] = useState([]);
 
   const token = import.meta.env.VITE_MOVIE_TOKEN_KEY;
 
@@ -34,6 +38,10 @@ export function MovieProvider({ children }) {
         setIsLogin,
         submit,
         setSubmit,
+        userInfo,
+        setUserInfo,
+        favoriteMovie,
+        setFavoriteMovie,
       }}
     >
       {children}

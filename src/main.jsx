@@ -8,19 +8,24 @@ import Layout from "./component/Layout.jsx";
 import { MovieProvider } from "./context/movieProvider.jsx";
 import Login from "./component/LoginPage.jsx";
 import Join from "./component/JoinPage.jsx";
+import { SupabaseProvider } from "./context/index.jsx";
+import MyPage from "./component/MyPage.jsx";
 
 createRoot(document.getElementById("root")).render(
   <BrowserRouter>
     <MovieProvider>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<App />} />
-          <Route path="MovieCard" element={<MovieCard />} />
-          <Route path="movie/:movieId" element={<MovieDetail />} />
-          <Route path="login" element={<Login />} />
-          <Route path="join" element={<Join />} />
-        </Route>
-      </Routes>
+      <SupabaseProvider>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<App />} />
+            <Route path="MovieCard" element={<MovieCard />} />
+            <Route path="movie/:movieId" element={<MovieDetail />} />
+            <Route path="login" element={<Login />} />
+            <Route path="join" element={<Join />} />
+            <Route path="myPage" element={<MyPage />} />
+          </Route>
+        </Routes>
+      </SupabaseProvider>
     </MovieProvider>
   </BrowserRouter>
 );

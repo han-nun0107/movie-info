@@ -2,13 +2,29 @@ import MovieCard from "./component/MovieCard";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { MovieContext } from "./context/movieContext";
 import { useAsyncMovieData } from "./hooks/movieData";
+import { useSupabaseAuth } from "./auth";
 
 function App() {
   /* 틀렸던 곳 */
-  const { movies, setMovies, token } = useContext(MovieContext);
+  const { movies, setMovies, token, setUserInfo, setIsLogin } =
+    useContext(MovieContext);
+  const { getUserInfo } = useSupabaseAuth();
+  useEffect(() => {
+    const userInfo = async () => {
+      const user = await getUserInfo();
+      if (user.user) {
+        setUserInfo(user.user);
+        setIsLogin(true);
+      } else {
+        setIsLogin(false);
+      }
+    };
+    userInfo();
+  }, []);
+
   useAsyncMovieData(setMovies, token);
   return (
     <>

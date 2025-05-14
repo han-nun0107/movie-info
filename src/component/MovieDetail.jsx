@@ -2,13 +2,17 @@ import { useContext } from "react";
 import { MovieContext } from "../context/movieContext";
 import { useAsyncDetailMovieData } from "../hooks/movieData";
 import { DetailButton } from "./Button";
+import { useMovieDetailData } from "../hooks/movieDetailData";
 
 export default function MovieDetail() {
-  const { detailMovies, setDetailMovies, token } = useContext(MovieContext);
+  const { detailMovies, setDetailMovies, token, setUserInfo, setIsLogin } =
+    useContext(MovieContext);
   useAsyncDetailMovieData(setDetailMovies, token);
   const score = detailMovies?.vote_average?.toFixed(2);
   const overview = detailMovies?.overview;
   const title = detailMovies?.title;
+
+  useMovieDetailData(setUserInfo, setIsLogin);
 
   if (!detailMovies)
     return (
