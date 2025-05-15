@@ -11,9 +11,7 @@ export default function UserProfile() {
     const { error } = await supabase
       .from("user_table")
       .update({
-        userName: "piano"
-        /* 수정 Authentication users
-         */,
+        userName: "piano",
       })
       .eq("id", userInfo.id);
 
