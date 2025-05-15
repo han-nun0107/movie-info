@@ -10,11 +10,15 @@ export default function UserProfile() {
   const handleChangeName = async () => {
     const { error } = await supabase
       .from("user_table")
-      .update({ name: "piano" })
-      .eq("user_id", userInfo.id);
+      .update({
+        userName: "piano"
+        /* 수정 Authentication users
+         */,
+      })
+      .eq("id", userInfo.id);
 
     if (error) return console.error("닉네임 변경 실패", error);
-    setUserInfo({ ...userInfo, name: "piano" });
+    setUserInfo({ ...userInfo, userName: "piano" });
   };
 
   return (
