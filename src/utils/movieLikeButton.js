@@ -1,5 +1,5 @@
 import supabase from "../../supabaseClient";
-import { koreaTime } from "./koreaTIme";
+import { koreaTime } from "./koreaTime";
 
 export const movieLikeButton = async ({
   userInfo,
