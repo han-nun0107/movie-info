@@ -8,15 +8,24 @@ export default function UserProfile() {
   useUserInfo();
 
   const handleChangeName = async () => {
-    const { error } = await supabase
+    const { error: updateTableError } = await supabase
       .from("user_table")
       .update({
-        userName: "piano",
+        userName: "사과",
       })
       .eq("id", userInfo.id);
 
-    if (error) return console.error("닉네임 변경 실패", error);
-    setUserInfo({ ...userInfo, userName: "piano" });
+    if (updateTableError)
+      return console.error("닉네임 변경 실패", updateTableError);
+
+    const { error: updateAuthError } = await supabase.auth.updateUser({
+      data: { userName: "사과" },
+    });
+
+    if (updateAuthError) {
+      console.error("닉네임 변경 실패", updateAuthError);
+    }
+    setUserInfo({ ...userInfo, userName: "사과" });
   };
 
   return (
