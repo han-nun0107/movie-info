@@ -24,7 +24,7 @@ export const handleJoin = async (
     const result = await signUp({ email, password, userName: name });
 
     if (result.user) {
-      await supabase.from("users").insert({
+      await supabase.from("user_table").insert({
         id: result.user.id,
         email: result.user.email,
         userName: name,
