@@ -1,6 +1,33 @@
 import supabase from "../../supabaseClient";
 
-export const handleLogin = async (e, { setIsLogin, navigate }) => {
+export const handleLogin = async (
+  e,
+  { formData, setSubmit, login, setUserInfo, navigate }
+) => {
+  const { email, password } = formData;
+  e.preventDefault();
+  setSubmit(true);
+  if (!formData.email || !formData.password) {
+    return;
+  }
+  try {
+    const result = await login({ email, password });
+
+    if (result?.user) {
+      alert("로그인 성공");
+      setUserInfo(result?.user);
+      navigate("/");
+    }
+  } catch (err) {
+    alert("에러 발생");
+    console.log("에러 발생:", err);
+  }
+};
+
+export const handleLogout = async (
+  e,
+  { setIsLogin, navigate, setUserInfo }
+) => {
   e.preventDefault();
 
   try {
@@ -12,6 +39,7 @@ export const handleLogin = async (e, { setIsLogin, navigate }) => {
     }
 
     alert("로그아웃 성공");
+    setUserInfo(null);
     setIsLogin(false);
     navigate("/");
   } catch (err) {

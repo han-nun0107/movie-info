@@ -15,7 +15,7 @@ function App() {
   useEffect(() => {
     const userInfo = async () => {
       const user = await getUserInfo();
-      if (user.user) {
+      if (user?.user) {
         setUserInfo(user.user);
         setIsLogin(true);
       } else {

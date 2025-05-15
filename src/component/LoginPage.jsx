@@ -3,6 +3,7 @@ import { LayoutInput } from "./layoutInput/LayoutInput";
 import { useContext, useState } from "react";
 import { MovieContext } from "../context/movieContext";
 import { useSupabaseAuth } from "../auth";
+import { handleLogin } from "../utils/handleLogin";
 
 export default function Login() {
   const [formData, setFormData] = useState({ email: "", password: "" });
@@ -10,31 +11,14 @@ export default function Login() {
   const { navigate, setUserInfo } = useContext(MovieContext);
   const { login } = useSupabaseAuth();
 
-  const handleSubmit = async (e) => {
-    const { email, password } = formData;
-    e.preventDefault();
-    setSubmit(true);
-    if (!formData.email || !formData.password) {
-      return;
-    }
-    try {
-      const result = await login({ email, password });
-
-      if (result?.user) {
-        alert("로그인 성공");
-        setUserInfo(result?.user);
-        navigate("/");
-      }
-    } catch (err) {
-      alert("에러 발생");
-      console.log("에러 발생:", err);
-    }
-  };
-
   return (
     <div className="flex flex-col justify-center items-center gap-15 min-h-screen">
       <h1 className="text-[2rem] font-black">로그인</h1>
-      <form onSubmit={handleSubmit}>
+      <form
+        onSubmit={(e) =>
+          handleLogin(e, { formData, setSubmit, login, setUserInfo, navigate })
+        }
+      >
         <LayoutInput
           inputType="email"
           inputPlaceholder="xxxxxx@gmail.com 형식으로 작성해주세요"

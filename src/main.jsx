@@ -10,6 +10,7 @@ import Login from "./component/LoginPage.jsx";
 import Join from "./component/JoinPage.jsx";
 import { SupabaseProvider } from "./context/index.jsx";
 import MyPage from "./component/MyPage.jsx";
+import UserProfile from "./component/userProfile.jsx";
 
 createRoot(document.getElementById("root")).render(
   <BrowserRouter>
@@ -23,6 +24,7 @@ createRoot(document.getElementById("root")).render(
             <Route path="login" element={<Login />} />
             <Route path="join" element={<Join />} />
             <Route path="myPage" element={<MyPage />} />
+            <Route path="userprofile" element={<UserProfile />} />
           </Route>
         </Routes>
       </SupabaseProvider>

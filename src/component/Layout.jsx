@@ -2,11 +2,18 @@ import { useContext } from "react";
 import { Link, Outlet } from "react-router-dom";
 import { MovieContext } from "../context/movieContext";
 import { useLayoutInput } from "../hooks/layoutInput";
-import { handleLogin } from "../utils/handleLogin";
+import { handleLogout } from "../utils/handleLogin";
 
 export default function Layout() {
-  const { input, setInput, isLogin, userInfo, setIsLogin, navigate } =
-    useContext(MovieContext);
+  const {
+    input,
+    setInput,
+    isLogin,
+    userInfo,
+    setUserInfo,
+    setIsLogin,
+    navigate,
+  } = useContext(MovieContext);
 
   useLayoutInput();
 
@@ -31,17 +38,20 @@ export default function Layout() {
           </div>
           <div className="flex gap-2">
             {isLogin ? (
-              <div className="flex flex-row items-center justify-around w-full text-white gap-3">
-                <div>toggle</div>
-                <div className="group relative">
+              <div className="flex flex-row items-center justify-evenly  w-full text-white gap-3">
+                <p>toggle</p>
+                <p>{userInfo?.userName}</p>
+                <div className="flex justify-center group relative">
                   <img
                     src={userInfo.profileImageUrl}
                     alt=""
                     className="w-10 h-10 rounded-2xl "
                   />
-                  <ul className="flex-col items-center justify-center gap-2 w-30 h-20 hidden group-hover:flex group-hover:absolute  bg-[#1a1a1a] text-[#fafafb] text-center">
+                  <ul className="flex-col items-center justify-center gap-2 w-30 h-20 hidden group-hover:flex group-hover:absolute bg-[#1a1a1a] text-[#fafafb] text-center top-10">
                     <li
-                      onClick={(e) => handleLogin(e, { setIsLogin, navigate })}
+                      onClick={(e) =>
+                        handleLogout(e, { setIsLogin, navigate, setUserInfo })
+                      }
                       className="hover:underline cursor-pointer"
                     >
                       로그아웃
