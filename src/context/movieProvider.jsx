@@ -22,8 +22,12 @@ export function MovieProvider({ children }) {
 
   /* 닉네임 수정 */
   const [changeName, setChangeName] = useState("");
+
   /* 프로필 사진 수정 */
   const [changeImg, setChangeImg] = useState("");
+
+  /* 프로필 사진 상태 */
+  const [imgState, setImgState] = useState("");
 
   const token = import.meta.env.VITE_MOVIE_TOKEN_KEY;
 
@@ -54,6 +58,8 @@ export function MovieProvider({ children }) {
         setChangeName,
         changeImg,
         setChangeImg,
+        imgState,
+        setImgState,
       }}
     >
       {children}

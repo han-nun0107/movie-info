@@ -12,10 +12,10 @@ export function useUserInfo() {
 
       if (user) {
         setUserInfo({
-          id: user.id,
-          email: user.email,
-          userName: user.userName,
-          profileImageUrl: user.profileImageUrl,
+          id: user?.id,
+          email: user?.email,
+          userName: user?.userName,
+          profileImageUrl: user?.profileImageUrl,
         });
         setIsLogin(true);
       } else {

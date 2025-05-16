@@ -43,7 +43,7 @@ export default function NickName() {
         />
         <button
           onClick={handleChangeName}
-          className="cursor-pointer w-30 h-10 text-lg border rounded-2xl ml-2 bg-gray-300"
+          className="cursor-pointer w-30 h-10 text-lg border rounded-2xl ml-2 bg-gray-300 hover:bg-gray-400 active:bg-gray-500"
         >
           닉네임 수정
         </button>

@@ -28,7 +28,7 @@ export const handleJoin = async (
         id: result.user.id,
         email: result.user.email,
         userName: name,
-        profile_image_url:
+        profileImageUrl:
           "https://cdn.pixabay.com/photo/2016/03/31/19/56/avatar-1295396_1280.png",
       });
       alert("회원가입 성공!");
