@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { LayoutInput } from "./layoutInput/LayoutInput";
 import { MovieContext } from "../context/movieContext";
 import { useSupabaseAuth } from "../auth";
-import { handleJoin } from "../utils/handleJoin";
+import { handleJoin } from "../utils/handle/handleJoin";
 
 export default function Join() {
   const { submit, setSubmit, navigate } = useContext(MovieContext);

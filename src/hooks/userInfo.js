@@ -3,8 +3,7 @@ import { useSupabaseAuth } from "../auth";
 import { MovieContext } from "../context/movieContext";
 
 export function useUserInfo() {
-  const { userInfo, setUserInfo, setIsLogin } = useContext(MovieContext);
-  console.log(userInfo);
+  const { setUserInfo, setIsLogin } = useContext(MovieContext);
   const { getUserInfo } = useSupabaseAuth();
   useEffect(() => {
     const fetchUser = async () => {

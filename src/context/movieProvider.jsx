@@ -20,6 +20,9 @@ export function MovieProvider({ children }) {
   const [isLiked, setIsLiked] = useState(null);
   const [likeMovies, setLikeMovies] = useState([]);
 
+  /* 닉네임 수정 */
+  const [changeName, setChangeName] = useState("");
+
   const token = import.meta.env.VITE_MOVIE_TOKEN_KEY;
 
   return (
@@ -45,6 +48,8 @@ export function MovieProvider({ children }) {
         setIsLiked,
         likeMovies,
         setLikeMovies,
+        changeName,
+        setChangeName,
       }}
     >
       {children}

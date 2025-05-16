@@ -14,11 +14,13 @@ export default function MovieCard({ title, poster_path, vote_average, id }) {
     <>
       <div className="border w-1/7 p-3 group transform hover:scale-105 duration-300">
         <Link to={`/movie/${id}`}>
-          <img
-            src={`https://image.tmdb.org/t/p/w200${poster_path}`}
-            alt={title}
-            className="w-full"
-          />
+          <div className="h-[400px] bg-cover">
+            <img
+              src={`https://image.tmdb.org/t/p/w200${poster_path}`}
+              alt={title}
+              className="w-full h-full"
+            />
+          </div>
           <h3 className="font-bold mt-2 group-hover:underline">{title}</h3>
         </Link>
 

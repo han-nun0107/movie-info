@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { Link, Outlet } from "react-router-dom";
 import { MovieContext } from "../context/movieContext";
 import { useLayoutInput } from "../hooks/layoutInput";
-import { handleLogout } from "../utils/handleLogin";
+import { handleLogout } from "../utils/handle/handleLogin";
 
 export default function Layout() {
   const {
@@ -40,7 +40,7 @@ export default function Layout() {
             {isLogin ? (
               <div className="flex flex-row items-center justify-evenly  w-full text-white gap-3">
                 <p>toggle</p>
-                <p>{userInfo?.userName}</p>
+                <p>{userInfo.userName}</p>
                 <div className="flex justify-center group relative">
                   <img
                     src={userInfo.profileImageUrl}

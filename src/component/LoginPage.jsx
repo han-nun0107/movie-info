@@ -3,7 +3,7 @@ import { LayoutInput } from "./layoutInput/LayoutInput";
 import { useContext, useState } from "react";
 import { MovieContext } from "../context/movieContext";
 import { useSupabaseAuth } from "../auth";
-import { handleLogin } from "../utils/handleLogin";
+import { handleLogin } from "../utils/handle/handleLogin";
 
 export default function Login() {
   const [formData, setFormData] = useState({ email: "", password: "" });
