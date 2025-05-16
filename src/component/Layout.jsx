@@ -43,7 +43,7 @@ export default function Layout() {
                 <p>{userInfo.userName}</p>
                 <div className="flex justify-center group relative">
                   <img
-                    src={userInfo.profileImageUrl}
+                    src={userInfo.avatar_url}
                     alt=""
                     className="w-10 h-10 rounded-2xl "
                   />

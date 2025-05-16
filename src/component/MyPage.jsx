@@ -19,7 +19,7 @@ export default function MyPage() {
         <div className="flex flex-col items-center justify-center  text-black py-8 space-y-8 shadow-md">
           {/* 프로필 이미지 */}
           <img
-            src={userInfo?.profileImageUrl}
+            src={userInfo?.avatar_url}
             alt="프로필 사진"
             className="rounded-full w-28 h-28 object-cover border-2 border-white shadow-sm"
           />

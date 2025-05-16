@@ -3,19 +3,20 @@ import { DTO_TYPE } from "./config";
 // User data 매핑용 함수
 export const changeFromDto = ({ type, dto }) => {
   switch (type) {
-    case DTO_TYPE.user:
-      const { user_metadata: userInfo } = dto?.user;
+    case DTO_TYPE.user: {
+      const { user_metadata: userInfo } = dto?.user || {};
       return {
         user: {
-          id: userInfo.sub,
-          email: userInfo.email,
-          userName: userInfo.userName
+          id: userInfo?.sub,
+          email: userInfo?.email,
+          userName: userInfo?.userName
             ? userInfo.userName
-            : userInfo.email.split("@")[0],
-          profileImageUrl: userInfo.avatar_url,
+            : userInfo?.email?.split("@")[0],
+          avatar_url: userInfo?.avatar_url,
         },
       };
-    case DTO_TYPE.error:
+    }
+    case DTO_TYPE.error: {
       if (!dto.error) {
         return {
           error: {
@@ -26,14 +27,13 @@ export const changeFromDto = ({ type, dto }) => {
         };
       }
       const { error: rawError } = dto;
-
       return {
         error: {
           status: rawError.status,
           message: rawError.message,
         },
       };
-
+    }
     default:
       new Error("wrong type accessed");
       return;

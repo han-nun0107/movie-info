@@ -15,7 +15,7 @@ export function useUserInfo() {
           id: user?.id,
           email: user?.email,
           userName: user?.userName,
-          profileImageUrl: user?.profileImageUrl,
+          avatar_url: user?.avatar_url,
         });
         setIsLogin(true);
       } else {

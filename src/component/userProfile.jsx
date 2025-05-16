@@ -16,7 +16,7 @@ export default function UserProfile() {
     <div className="min-h-screen w-full flex flex-col items-center justify-center">
       <div className="flex flex-col items-center justify-center gap-8 py-12">
         <img
-          src={userInfo?.profileImageUrl}
+          src={userInfo?.avatar_url}
           alt="프로필 사진"
           className="rounded-full w-60 h-60 object-cover"
         />

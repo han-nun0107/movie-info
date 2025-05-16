@@ -13,8 +13,8 @@ export function MovieProvider({ children }) {
 
   /* 회원가입, 로그인 */
   const [isLogin, setIsLogin] = useState(false);
-  const [submit, setSubmit] = useState(false);
   const [userInfo, setUserInfo] = useState(null);
+  const [submit, setSubmit] = useState(false);
 
   /* 좋아요 누른 영화 */
   const [isLiked, setIsLiked] = useState(null);
