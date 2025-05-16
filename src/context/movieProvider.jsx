@@ -22,6 +22,8 @@ export function MovieProvider({ children }) {
 
   /* 닉네임 수정 */
   const [changeName, setChangeName] = useState("");
+  /* 프로필 사진 수정 */
+  const [changeImg, setChangeImg] = useState("");
 
   const token = import.meta.env.VITE_MOVIE_TOKEN_KEY;
 
@@ -50,6 +52,8 @@ export function MovieProvider({ children }) {
         setLikeMovies,
         changeName,
         setChangeName,
+        changeImg,
+        setChangeImg,
       }}
     >
       {children}
