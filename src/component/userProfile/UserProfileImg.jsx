@@ -23,30 +23,37 @@ export default function UserProfileImg() {
     setUserInfo({ ...userInfo, avatar_url: changeImg });
     setChangeImg("");
   };
+
+  const handleUserProfileChange = (e) => {
+    const file = e.target.files[0];
+
+    if (!file) return;
+    const imageUrl = URL.createObjectURL(file);
+    setChangeImg(imageUrl);
+  };
+
   return (
     <div className="flex flex-col items-center">
       <div>
-        {/* <input
+        <input
           type="file"
-          value={changeImg}
-          onChange={(e) => {
-            setChangeImg(e.target.value);
-          }}
+          accept="imgage/*"
+          onChange={handleUserProfileChange}
           className="file:mr-4 file:py-2 file:px-4
              file:rounded-full file:border-0
              file:text-sm file:font-semibold
              file:bg-violet-50 file:text-violet-700
              file:cursor-pointer
              hover:file:bg-violet-100"
-        /> */}
-        <input
+        />
+        {/*  <input
           type="text"
           className="border"
           value={changeImg}
           onChange={(e) => {
             setChangeImg(e.target.value);
-          }}
-        />
+          }} 
+        />*/}
       </div>
       <div>
         <button

@@ -5,7 +5,7 @@ import { useMyPageMovies } from "../hooks/mypageMovie";
 import NickName from "./userProfile/NickName";
 import UserEmail from "./userProfile/UserEmail";
 import UserProfileImg from "./userProfile/UserProfileImg";
-import UserBookMark from "./userProfile/UserBookmark";
+import UserBookMark from "./userProfile/UserBookMark";
 
 export default function UserProfile() {
   const { userInfo, setLikeMovies, likeMovies } = useContext(MovieContext);
