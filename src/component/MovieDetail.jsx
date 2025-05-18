@@ -6,6 +6,7 @@ import {
 } from "../hooks/movieData";
 import { DetailButton } from "./Button";
 import { useMovieDetailData } from "../hooks/movieDetailData";
+import ModalDetail from "./movieDetail/ModalDetail";
 
 export default function MovieDetail() {
   const {
@@ -68,20 +69,7 @@ export default function MovieDetail() {
             장르:{" "}
             {detailMovies?.genres?.map((j) => j.name).join(", ") ?? "장르 없음"}
           </p>
-          {trailer ? (
-            <a
-              href={`https://www.youtube.com/watch?v=${trailer}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg w-[140px] text-center block"
-            >
-              트레일러 재생
-            </a>
-          ) : (
-            <p className="text-gray-400 text-sm text-center">
-              트레일러가 없습니다
-            </p>
-          )}
+          <ModalDetail />
           <p className="text-balance">
             {/* 틀렸던 부분 3항 연산자 */}
             줄거리: {overview ? overview : "정보 없음"}

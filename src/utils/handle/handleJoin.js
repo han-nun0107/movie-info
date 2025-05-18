@@ -34,7 +34,7 @@ export const handleJoin = async (
         id: result.user.id,
         email: result.user.email,
         userName: name,
-        profileImageUrl:
+        avatar_url:
           "https://cdn.pixabay.com/photo/2016/03/31/19/56/avatar-1295396_1280.png",
       });
       toast.success("회원가입 성공!", { toastId: "JoinSuccess" });
