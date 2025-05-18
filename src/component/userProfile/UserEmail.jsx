@@ -5,7 +5,7 @@ export default function UserEmail() {
   const { userInfo } = useContext(MovieContext);
   return (
     <div className="flex flex-col items-center">
-      <p className="text-gray-600 ">아이디: {userInfo?.email}</p>
+      <p className="text-[#fafaf8] ">아이디: {userInfo?.email}</p>
       {/* <input
         type="text"
         placeholder="바꿀 이메일을 적어주세요"

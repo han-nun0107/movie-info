@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 export function MovieProvider({ children }) {
   const [movies, setMovies] = useState([]);
   const [detailMovies, setDetailMovies] = useState(null);
+  const [movieVideo, setMovieVideo] = useState(null);
   const navigate = useNavigate();
 
   /* 검색기능 */
@@ -60,6 +61,8 @@ export function MovieProvider({ children }) {
         setChangeImg,
         imgState,
         setImgState,
+        movieVideo,
+        setMovieVideo,
       }}
     >
       {children}

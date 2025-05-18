@@ -19,7 +19,7 @@ export default function Layout() {
 
   return (
     <>
-      <header className="w-full bg-black px-4 py-3 fixed z-10">
+      <header className="w-full bg-black px-4 py-4 fixed z-10">
         <nav className="grid grid-cols-[.2fr_1fr_.3fr] items-center">
           <Link to={"/"}>
             <div className="text-2xl text-white font-black">로고</div>

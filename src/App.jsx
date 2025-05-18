@@ -31,6 +31,7 @@ function App() {
       <div>
         <div
           className="
+          bg-black
         flex
         flex-wrap justify-center
         p-6

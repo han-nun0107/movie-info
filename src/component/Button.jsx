@@ -6,11 +6,12 @@ export function DetailButton({ label, location }) {
   return (
     <button
       className="
-        bg-purple-300 hover:bg-purple-600 active:bg-purple-900
+        bg-purple-500 hover:bg-purple-600 active:bg-purple-700
           mt-3.5
           p-2
         text-white
-          cursor-pointer"
+          cursor-pointer
+          rounded-2xl"
       onClick={() => {
         navigate(location);
       }}

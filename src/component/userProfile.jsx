@@ -13,18 +13,21 @@ export default function UserProfile() {
   useMyPageMovies(userInfo, setLikeMovies, likeMovies);
 
   return (
-    <div className="min-h-screen w-full flex flex-col items-center justify-center">
-      <div className="flex flex-col items-center justify-center gap-8 py-12">
+    <div className="min-h-screen w-full bg-[#0f0f0f] text-[#fafaf8] flex flex-col items-center justify-center px-4">
+      <div className="w-full max-w-md bg-[#1a1a1a] p-8 rounded-2xl shadow-xl flex flex-col items-center gap-6 mt-12 mb-8">
         <img
           src={userInfo?.avatar_url}
           alt="프로필 사진"
-          className="rounded-full w-60 h-60 object-cover"
+          className="rounded-full w-40 h-40 object-cover ring-4 ring-yellow-400 shadow-lg hover:scale-105 transition-transform duration-300"
         />
         <NickName />
         <UserEmail />
         <UserProfileImg />
       </div>
-      <UserBookMark />
+
+      <div className="w-full max-w-6xl px-4">
+        <UserBookMark />
+      </div>
     </div>
   );
 }

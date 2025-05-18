@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import supabase from "../../supabaseClient";
 import { koreaTime } from "./koreaTime";
 
@@ -11,7 +12,7 @@ export const movieLikeButton = async ({
   setIsLiked,
 }) => {
   if (!userInfo || !userInfo?.id) {
-    alert("로그인 후 사용해주세요.");
+    toast.warn("로그인 후 사용 해주세요.", { toastId: "PlzLogin" });
     return;
   }
 
@@ -22,7 +23,7 @@ export const movieLikeButton = async ({
       .eq("user_id", userInfo.id)
       .eq("movie_id", id);
     setIsLiked(false);
-    alert("좋아요 취소");
+    toast.info("좋아요 취소");
   } else {
     await supabase.from("likes").insert({
       user_id: userInfo.id,
@@ -33,6 +34,6 @@ export const movieLikeButton = async ({
       created_at: koreaTime(),
     });
     setIsLiked(true);
-    alert("좋아요 추가");
+    toast.success("좋아요 추가");
   }
 };

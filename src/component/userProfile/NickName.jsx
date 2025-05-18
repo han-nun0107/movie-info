@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { MovieContext } from "../../context/movieContext";
 import supabase from "../../../supabaseClient";
+import { toast } from "react-toastify";
 
 export default function NickName() {
   const { userInfo, changeName, setChangeName, setUserInfo } =
@@ -8,7 +9,7 @@ export default function NickName() {
 
   const handleChangeName = async () => {
     if (changeName.trim() === "") {
-      alert("이름을 적어주세요");
+      toast.warn("이름을 적어주세요", { toastId: "ChangeName" });
       return;
     }
     const { error } = await supabase.auth.updateUser({
@@ -43,7 +44,7 @@ export default function NickName() {
         />
         <button
           onClick={handleChangeName}
-          className="cursor-pointer w-30 h-10 text-lg border rounded-2xl ml-2 bg-gray-300 hover:bg-gray-400 active:bg-gray-500"
+          className="cursor-pointer w-30 h-10 text-lg border rounded-2xl ml-2 bg-blue-300 hover:bg-blue-400 active:bg-blue-500"
         >
           닉네임 수정
         </button>

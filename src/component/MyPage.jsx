@@ -14,7 +14,7 @@ export default function MyPage() {
 
   return (
     <>
-      <div className="grid grid-cols-[0.25fr_1fr] bg-black border-gray-500 border-t-2 text-white">
+      <div className="grid grid-cols-[0.25fr_1fr] bg-[#1a1a1a] border-gray-500 border-t-2 text-[#fafaf8]">
         {/* 왼쪽 */}
         <div className="flex flex-col items-center justify-center  text-black py-8 space-y-8 shadow-md">
           {/* 프로필 이미지 */}
@@ -25,12 +25,12 @@ export default function MyPage() {
           />
 
           {/* 사용자 이름 */}
-          <p className="text-lg font-semibold text-[#fafafb]">
+          <p className="text-lg font-semibold text-[#fafaf8]">
             이름: {userInfo?.userName}
           </p>
 
           {/* 메뉴 */}
-          <ul className="text-base font-medium text-[#fafafb]">
+          <ul className="text-base font-medium text-[#fafaf8]">
             <Link to={"/userprofile"}>
               <li className={`${liClass}`}>회원정보</li>
             </Link>
@@ -43,7 +43,7 @@ export default function MyPage() {
         {/* 오른쪽 */}
         <div className="flex items-center justify-center p-6">
           <div className="bg-gray-700 w-[80%] min-h-[839px] rounded-xl shadow-lg text-xl">
-            <div className="my-5 mx-5 text-3xl text-[#fafafb] font-black border-b-2">
+            <div className="my-5 mx-5 text-3xl text-[#fafaf8] font-black border-b-2">
               WISHLIST
             </div>
             <div className="flex flex-wrap gap-6 justify-center">
@@ -64,4 +64,4 @@ export default function MyPage() {
   );
 }
 
-const liClass = `hover:underline cursor-pointer text-[#fafafb]`;
+const liClass = `hover:underline cursor-pointer text-[#fafaf8]`;

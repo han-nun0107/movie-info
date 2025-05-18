@@ -66,3 +66,38 @@ export function useAsyncDetailMovieData(setDetailMovies, token) {
     fetchDetailMovie();
   }, [movieId, setDetailMovies, token]);
 }
+
+export function useAsyncMovieViedo(setMovieVideo, token) {
+  const { movieId } = useParams();
+
+  useEffect(() => {
+    setMovieVideo(null);
+    const options = {
+      method: "GET",
+      headers: {
+        accept: "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    const fetchDetailMovie = async () => {
+      try {
+        const respone = await fetch(
+          `https://api.themoviedb.org/3/movie/${movieId}/videos?language=ko-KR`,
+          options
+        );
+        const data = await respone.json();
+        console.log(data);
+
+        if (data.success === false) {
+          setMovieVideo(null);
+        } else {
+          setMovieVideo(data);
+        }
+      } catch (error) {
+        console.log("동영상 불러오기 실패", error);
+      }
+    };
+    fetchDetailMovie();
+  }, [movieId, setMovieVideo, token]);
+}
