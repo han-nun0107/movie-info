@@ -30,6 +30,9 @@ export function MovieProvider({ children }) {
   /* 프로필 사진 상태 */
   const [imgState, setImgState] = useState("");
 
+  /* 트레일러 모달 창 */
+  const [modalOpen, setModalOpen] = useState(false);
+
   const token = import.meta.env.VITE_MOVIE_TOKEN_KEY;
 
   return (
@@ -63,6 +66,8 @@ export function MovieProvider({ children }) {
         setImgState,
         movieVideo,
         setMovieVideo,
+        modalOpen,
+        setModalOpen,
       }}
     >
       {children}

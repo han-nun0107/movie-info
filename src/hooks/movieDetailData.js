@@ -10,13 +10,12 @@ export function useMovieDetailData(setUserInfo, setIsLogin) {
       const user = res?.user;
 
       if (user) {
-        setUserInfo((prev) => ({
-          ...prev,
+        setUserInfo({
           id: user?.id,
           email: user?.email,
-          userName: user?.user_metadata?.userName,
-          avatar_url: user?.user_metadata?.avatar_url,
-        }));
+          userName: user?.userName,
+          avatar_url: user?.avatar_url,
+        });
         setIsLogin(true);
       } else {
         setIsLogin(false);
