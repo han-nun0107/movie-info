@@ -6,12 +6,6 @@ export default function UserEmail() {
   return (
     <div className="flex flex-col items-center">
       <p className="text-[#fafaf8] ">아이디: {userInfo?.email}</p>
-      {/* <input
-        type="text"
-        placeholder="바꿀 이메일을 적어주세요"
-        className="border rounded-2xl"
-      />
-      <button className=" bg-gray-300 rounded-xl border">이메일 수정</button> */}
     </div>
   );
 }

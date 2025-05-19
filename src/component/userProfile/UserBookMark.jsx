@@ -1,10 +1,13 @@
 import { useContext } from "react";
 import { handleReset } from "../../utils/handle/handleReset";
 import { MovieContext } from "../../context/movieContext";
-import  MovieCard  from "../../component/MovieCard";
+import MovieCard from "../../component/MovieCard";
+import { useMyPageMovies } from "../../hooks/mypageMovie";
 
 export default function UserBookMark() {
   const { userInfo, likeMovies, setLikeMovies } = useContext(MovieContext);
+  useMyPageMovies(userInfo, setLikeMovies, likeMovies);
+
   return (
     <div className="w-[95%] border-t border-t-gray-500">
       <div className="flex justify-between px-10 py-3">

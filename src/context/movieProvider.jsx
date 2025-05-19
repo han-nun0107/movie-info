@@ -33,6 +33,9 @@ export function MovieProvider({ children }) {
   /* 트레일러 모달 창 */
   const [modalOpen, setModalOpen] = useState(false);
 
+  /* 프로필 file로 업로드 상태 */
+  const [uploadImg, setUploadImg] = useState("");
+
   const token = import.meta.env.VITE_MOVIE_TOKEN_KEY;
 
   return (
@@ -68,6 +71,8 @@ export function MovieProvider({ children }) {
         setMovieVideo,
         modalOpen,
         setModalOpen,
+        uploadImg,
+        setUploadImg,
       }}
     >
       {children}

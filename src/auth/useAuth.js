@@ -36,6 +36,7 @@ export const useAuth = () => {
     } else {
       try {
         const { data, error } = await supabase.auth.getUser();
+        console.log(data);
         if (error) return;
         const userInfo = changeFromDto({
           type: !error ? DTO_TYPE.user : DTO_TYPE.error,

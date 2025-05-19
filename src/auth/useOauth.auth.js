@@ -3,11 +3,12 @@ import { useSupabase } from "../context";
 export const useOAuth = () => {
   const supabase = useSupabase();
   // 카카오 로그인
-  const loginWithKakao = async (...otherOptions) => {
+  const loginWithKakao = async (redirectTo = null, ...otherOptions) => {
     try {
       await supabase.auth.signInWithOAuth({
         provider: "kakao",
         options: {
+          redirectTo,
           ...otherOptions,
         },
       });
