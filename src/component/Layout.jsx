@@ -45,7 +45,7 @@ export default function Layout() {
                   <img
                     src={userInfo.avatar_url}
                     alt=""
-                    className="w-10 h-10 rounded-2xl "
+                    className="w-10 h-10 rounded-2xl cursor-pointer"
                   />
                   <ul className="flex-col items-center justify-center gap-2 w-30 h-20 hidden group-hover:flex group-hover:absolute bg-[#1a1a1a] text-[#fafafb] text-center top-10">
                     <li

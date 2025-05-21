@@ -8,7 +8,6 @@ import UserBookMark from "./userProfile/UserBookMark";
 
 export default function UserProfile() {
   const { userInfo } = useContext(MovieContext);
-  console.log(userInfo);
   useUserInfo();
   return (
     <div className="min-h-screen w-full bg-[#0f0f0f] text-[#fafaf8] flex flex-col items-center justify-center px-4">
@@ -26,7 +25,6 @@ export default function UserProfile() {
       <div className="w-full max-w-6xl px-4">
         <UserBookMark />
       </div>
-      <img src="" alt="" />
     </div>
   );
 }

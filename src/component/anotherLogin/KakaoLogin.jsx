@@ -5,8 +5,7 @@ export default function KakaoLogin() {
 
   const handleKaKaoLogin = async () => {
     try {
-      const redirectUrl =
-        "https://xwduhbhmzxkorhafrvcw.supabase.co/auth/v1/callback";
+      const redirectUrl = "http://localhost:5173";
       await loginWithKakao(redirectUrl);
     } catch (error) {
       console.error("카카오 로그인 실패:", error.message);

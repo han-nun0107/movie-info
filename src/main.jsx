@@ -34,6 +34,7 @@ createRoot(document.getElementById("root")).render(
           limit={4}
           closeButton={true}
           autoClose={2000}
+          hideProgressBar
         />
       </SupabaseProvider>
     </MovieProvider>
