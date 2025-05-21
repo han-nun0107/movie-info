@@ -17,7 +17,7 @@ export const handleChangeImage = async (
   const filePath = `avatars/${fileName}`; // avatarImg라는 폴더 안에 fileName을 넣음
 
   // 스토리지 업로드
-  const { data, error: storageImg } = await supabase.storage
+  const { error: storageImg } = await supabase.storage
     .from("avatars")
     .upload(filePath, uploadImg, {
       cacheControl: "3600",
