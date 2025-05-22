@@ -8,11 +8,11 @@ export default function UserProfileImg() {
   return (
     <div className="flex flex-col items-center">
       <div className="flex flex-col items-center justify-center mb-4 border w-[25rem] h-[9rem]">
-        <p className="text-xl">로컬 파일로 프로필 수정하기</p>
+        <p className="text-xl mb-2">로컬 파일로 프로필 수정하기</p>
         <InputFile />
       </div>
       <div className="flex flex-col items-center justify-center border w-[25rem] h-[9rem]">
-        <p className="text-xl">이미지 링크로 프로필 수정하기</p>
+        <p className="text-xl mb-2">이미지 링크로 프로필 수정하기</p>
         <InputText />
       </div>
     </div>
