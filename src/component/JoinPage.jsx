@@ -16,7 +16,7 @@ export default function Join() {
   });
 
   const isPassword = (password) =>
-    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/.test(password);
+    /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d!@#$%^&*()_+]{6,}$/.test(password);
 
   return (
     <div className="flex flex-col justify-center items-center min-h-screen">
@@ -47,8 +47,8 @@ export default function Join() {
         <LayoutInput
           labelName="비밀번호"
           inputType="password"
-          inputPlaceholder="영문 대문자/소문자 + 숫자의 조합 사용"
-          errorMassage="비밀번호는 대소문자 + 숫자 포함, 8자 이상이어야 합니다."
+          inputPlaceholder="영문과 숫자를 포함해 6자 이상 입력하세요"
+          errorMassage="영문과 숫자를 포함해 6자 이상 입력하세요"
           value={formData.password}
           onChange={(e) =>
             setFormData({ ...formData, password: e.target.value })

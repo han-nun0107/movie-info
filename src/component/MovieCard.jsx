@@ -8,7 +8,7 @@ export default function MovieCard({ title, poster_path, vote_average, id }) {
   const { userInfo } = useContext(MovieContext);
   const [isLiked, setIsLiked] = useState(false); // 카드마다 개별 상태
 
-  useLikeMovies(userInfo, id, setIsLiked);
+  useLikeMovies(userInfo, id, setIsLiked, isLiked);
 
   return (
     <>

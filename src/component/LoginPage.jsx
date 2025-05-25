@@ -5,6 +5,7 @@ import { MovieContext } from "../context/movieContext";
 import { useSupabaseAuth } from "../auth";
 import { handleLogin } from "../utils/handle/handleLogin";
 import KakaoLogin from "./anotherLogin/KakaoLogin";
+import GoogleLogin from "./anotherLogin/GoogleLogin";
 
 export default function Login() {
   const [formData, setFormData] = useState({ email: "", password: "" });
@@ -50,7 +51,10 @@ export default function Login() {
           로그인
         </button>
       </form>
-      <KakaoLogin />
+      <div className="flex flex-col gap-3">
+        <KakaoLogin />
+        <GoogleLogin />
+      </div>
       <p className="text-center">
         오즈무비가 처음이신가요?
         <span className="underline cursor-pointer">

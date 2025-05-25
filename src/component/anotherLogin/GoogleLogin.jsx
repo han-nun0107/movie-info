@@ -1,9 +1,17 @@
+import { useOAuth } from "../../auth/useOauth.auth";
+import { handleGoogleLogin } from "../../utils/handle/snsLogin/snsLogin";
+
 export default function GoogleLogin() {
-  const handleGoogleLogin = async () => {};
+  const { loginWithGoogle } = useOAuth();
 
   return (
-    <button onClick={handleGoogleLogin} className="cursor-pointer bg-gray-500">
-      구글 로그인
-    </button>
+    <img
+      src="/assets/web_light_rd_ctn@1x.png"
+      alt="구글 로그인 버튼"
+      onClick={() => {
+        handleGoogleLogin(loginWithGoogle);
+      }}
+      className="cursor-pointer"
+    />
   );
 }

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { MovieContext } from "./movieContext";
 import { useNavigate } from "react-router-dom";
 
@@ -35,6 +35,13 @@ export function MovieProvider({ children }) {
 
   /* 프로필 file로 업로드 상태 */
   const [uploadImg, setUploadImg] = useState("");
+
+  /* 무한 스크롤 */
+  const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(false);
+  const [hasNextPage, setHasNextPage] = useState(false);
+  const [pageParams, setPageParams] = useState([]);
+  const observerRef = useRef();
 
   const token = import.meta.env.VITE_MOVIE_TOKEN_KEY;
 
@@ -73,6 +80,15 @@ export function MovieProvider({ children }) {
         setModalOpen,
         uploadImg,
         setUploadImg,
+        page,
+        setPage,
+        loading,
+        setLoading,
+        hasNextPage,
+        setHasNextPage,
+        pageParams,
+        setPageParams,
+        observerRef,
       }}
     >
       {children}

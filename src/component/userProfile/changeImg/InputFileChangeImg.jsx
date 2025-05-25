@@ -5,7 +5,7 @@ import {
 } from "../../../utils/handle/handleUserProfileChangeWithFile";
 import { MovieContext } from "../../../context/movieContext";
 
-export default function InputFile() {
+export default function InputFileChangeImg() {
   const { setUploadImg, uploadImg, setUserInfo, userInfo, setChangeImg } =
     useContext(MovieContext);
   return (

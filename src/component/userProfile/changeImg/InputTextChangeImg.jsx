@@ -3,7 +3,7 @@ import { MovieContext } from "../../../context/movieContext";
 import { useUserInfo } from "../../../hooks/userInfo";
 import { handleInputTextChangeImg } from "../../../utils/handle/handleInputTextChangeImg";
 
-export default function InputText() {
+export default function InputTextChangeImg() {
   const { setChangeImg, setUserInfo, userInfo, changeImg } =
     useContext(MovieContext);
 

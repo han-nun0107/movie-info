@@ -4,28 +4,58 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { useContext, useEffect } from "react";
 import { MovieContext } from "./context/movieContext";
-import { useAsyncMovieData } from "./hooks/movieData";
-import { useSupabaseAuth } from "./auth";
+import { useCheckAuth } from "./hooks/checkAuth";
+import { useInfinityScroll } from "./hooks/infinityScroll";
 
 function App() {
   /* 틀렸던 곳 */
-  const { movies, setMovies, token, setUserInfo, setIsLogin } =
-    useContext(MovieContext);
-  const { getUserInfo } = useSupabaseAuth();
-  useEffect(() => {
-    const userInfo = async () => {
-      const user = await getUserInfo();
-      if (user?.user) {
-        setUserInfo(user.user);
-        setIsLogin(true);
-      } else {
-        setIsLogin(false);
-      }
-    };
-    userInfo();
-  }, []);
+  const {
+    movies,
+    setLoading,
+    setPage,
+    page,
+    token,
+    setMovies,
+    setHasNextPage,
+    pageParams,
+    setPageParams,
+    observerRef,
+  } = useContext(MovieContext);
 
-  useAsyncMovieData(setMovies, token);
+  useCheckAuth();
+  const fetchTopRatedMovies = async (page) => {
+    if (pageParams.includes(page)) return;
+    setLoading(true);
+    try {
+      const response = await fetch(
+        `https://api.themoviedb.org/3/movie/popular?language=ko-kr&page=${page}`,
+        {
+          method: "GET", // 생략 가능하지만 명시해도 좋음
+          headers: {
+            accept: "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      const data = await response.json();
+      setMovies((prevMovies) => [...prevMovies, ...data.results]);
+      setPageParams((prev) => [...prev, page]);
+      setHasNextPage(data.page < data.total_pages);
+      console.log("data:", data);
+    } catch (error) {
+      console.log("영화 불러오기 실패:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useInfinityScroll(setPage, observerRef);
+
+  useEffect(() => {
+    fetchTopRatedMovies(page);
+  }, [page]);
+
   return (
     <>
       <div>
@@ -49,6 +79,9 @@ function App() {
                 id={movie.id}
               />
             ))}
+          <h1 className="text-[#fafaf8] text-2xl" ref={observerRef}>
+            더보기
+          </h1>
         </div>
       </div>
 

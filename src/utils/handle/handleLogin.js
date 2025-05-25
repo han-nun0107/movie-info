@@ -13,7 +13,6 @@ export const handleLogin = async (
   }
   try {
     const result = await login({ email, password });
-
     if (result?.user) {
       toast.success("로그인 성공", { toastId: "LoginSuccess" });
       setUserInfo(result?.user);
@@ -38,6 +37,8 @@ export const handleLogout = async (
       console.error("로그아웃 오류", error);
       return;
     }
+    localStorage.clear();
+    sessionStorage.clear();
     toast.info("로그아웃 성공", { toastId: "LogoutSuccess" });
     setUserInfo(null);
     setIsLogin(false);
