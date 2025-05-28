@@ -1,6 +1,8 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
+import { MovieContext } from "../context/movieContext";
 
-export function useInfinityScroll(setPage, observerRef) {
+export function useInfinityScroll() {
+  const { setPage, observerRef } = useContext(MovieContext);
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       const firstEntry = entries[0];

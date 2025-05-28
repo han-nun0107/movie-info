@@ -7,7 +7,7 @@ export const changeFromDto = ({ type, dto }) => {
       const { user_metadata: userInfo } = dto?.user || {};
       return {
         user: {
-          id: userInfo?.sub,
+          id: dto?.user?.id,
           email: userInfo?.email,
           userName: userInfo?.userName
             ? userInfo.userName

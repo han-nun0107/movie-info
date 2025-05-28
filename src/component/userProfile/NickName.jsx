@@ -12,6 +12,7 @@ export default function NickName() {
       toast.warn("이름을 적어주세요", { toastId: "ChangeName" });
       return;
     }
+
     const { error } = await supabase.auth.updateUser({
       data: { userName: changeName },
     });

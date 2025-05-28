@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
-import { LayoutInput } from "./layoutInput/LayoutInput";
 import { useContext, useState } from "react";
 import { MovieContext } from "../context/movieContext";
 import { useSupabaseAuth } from "../auth";
 import { handleLogin } from "../utils/handle/handleLogin";
 import KakaoLogin from "./anotherLogin/KakaoLogin";
 import GoogleLogin from "./anotherLogin/GoogleLogin";
+import { LayoutInput } from "./layout/layoutInput/JoinLoginInput";
+import { DetailButton } from "./button/Button";
 
 export default function Login() {
   const [formData, setFormData] = useState({ email: "", password: "" });
@@ -32,24 +33,23 @@ export default function Login() {
         <LayoutInput
           inputType="password"
           inputPlaceholder="영문 대문자/소문자 + 숫자의 조합 사용"
-          errorMassage="비밀번호는 8자 이상이어야 합니다.."
+          errorMassage="비밀번호는 6자 이상이어야 합니다.."
           value={formData.password}
           onChange={(e) =>
             setFormData({ ...formData, password: e.target.value })
           }
           showError={submit && !formData.password}
         />
-        <button
-          type="submit"
+        <DetailButton
+          type={submit}
           className="
         bg-gray-500 
         text-[#fafafb] 
           w-lg h-12 
           cursor-pointer 
         hover:bg-gray-600 active:bg-gray-800"
-        >
-          로그인
-        </button>
+          label={"로그인"}
+        />
       </form>
       <div className="flex flex-col gap-3">
         <KakaoLogin />

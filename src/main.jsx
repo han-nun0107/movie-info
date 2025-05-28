@@ -5,7 +5,6 @@ import App from "./App.jsx";
 import MovieDetail from "../src/component/MovieDetail.jsx";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import MovieCard from "./component/MovieCard.jsx";
-import Layout from "./component/Layout.jsx";
 import { MovieProvider } from "./context/movieProvider.jsx";
 import Login from "./component/LoginPage.jsx";
 import Join from "./component/JoinPage.jsx";
@@ -13,6 +12,7 @@ import { SupabaseProvider } from "./context/index.jsx";
 import MyPage from "./component/MyPage.jsx";
 import UserProfile from "./component/userProfile.jsx";
 import { ToastContainer } from "react-toastify";
+import Layout from "./component/layout/Layout.jsx";
 
 createRoot(document.getElementById("root")).render(
   <BrowserRouter>

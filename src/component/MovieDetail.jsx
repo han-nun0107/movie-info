@@ -1,12 +1,12 @@
 import { useContext } from "react";
-import { MovieContext } from "../context/movieContext";
 import {
   useAsyncDetailMovieData,
   useAsyncMovieViedo,
 } from "../hooks/movieData";
-import { DetailButton } from "./Button";
 import { useMovieDetailData } from "../hooks/movieDetailData";
 import ModalDetail from "./movieDetail/ModalDetail";
+import { DetailButton } from "./button/Button";
+import { MovieContext } from "../context/movieContext";
 
 export default function MovieDetail() {
   const {
@@ -34,8 +34,28 @@ export default function MovieDetail() {
       <div className="flex flex-col min-h-screen justify-center items-center">
         <p className="text-3xl">Loading...</p>
         <div className="flex gap-2">
-          <DetailButton label="뒤로가기" location={-1} />
-          <DetailButton label="메인으로" location="/" />
+          <DetailButton
+            label="뒤로가기"
+            location={-1}
+            className="
+        bg-purple-500 hover:bg-purple-600 active:bg-purple-700
+          mt-3.5
+          p-2
+        text-white
+          cursor-pointer
+          rounded-2xl"
+          />
+          <DetailButton
+            label="메인으로"
+            location="/"
+            className="
+        bg-purple-500 hover:bg-purple-600 active:bg-purple-700
+          mt-3.5
+          p-2
+        text-white
+          cursor-pointer
+          rounded-2xl"
+          />
         </div>
       </div>
     );
@@ -48,7 +68,7 @@ export default function MovieDetail() {
         style={{
           backgroundImage: `url(https://image.tmdb.org/t/p/w1280${detailMovies?.backdrop_path})`,
         }}
-      ></div>
+      />
       <div className="flex flex-row gap-6 max-w-5xl mx-auto bg-gray-900 rounded-xl z-10 -my-30 px-10 py-15">
         <div className="flex-shrink-0 flex justify-center">
           <img
@@ -75,7 +95,17 @@ export default function MovieDetail() {
             줄거리: {overview ? overview : "정보 없음"}
           </p>
           <div>
-            <DetailButton label="뒤로가기" location={-1} />
+            <DetailButton
+              label="뒤로가기"
+              location={-1}
+              className="
+        bg-purple-500 hover:bg-purple-600 active:bg-purple-700
+          mt-3.5
+          p-2
+        text-white
+          cursor-pointer
+          rounded-2xl"
+            />
           </div>
         </div>
       </div>

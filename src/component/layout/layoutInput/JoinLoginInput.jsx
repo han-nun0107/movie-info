@@ -1,4 +1,4 @@
-export function LayoutInput({
+export function JoinLoginInput({
   labelName,
   inputType,
   inputPlaceholder,

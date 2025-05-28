@@ -1,8 +1,9 @@
 import { useContext, useState } from "react";
-import { LayoutInput } from "./layoutInput/LayoutInput";
+import { LayoutInput } from "./layout/layoutInput/JoinLoginInput";
 import { MovieContext } from "../context/movieContext";
 import { useSupabaseAuth } from "../auth";
 import { handleJoin } from "../utils/handle/handleJoin";
+import { DetailButton } from "./button/Button";
 
 export default function Join() {
   const { submit, setSubmit, navigate } = useContext(MovieContext);
@@ -66,17 +67,16 @@ export default function Join() {
           }
           showError={submit && formData.confirmPassword !== formData.password}
         />
-        <button
-          type="submit"
+        <DetailButton
+          type={submit}
           className="
         bg-gray-500 
         text-[#fafafb] 
           w-lg h-12 
           cursor-pointer 
         hover:bg-gray-600 active:bg-gray-800"
-        >
-          회원가입
-        </button>
+          label={"회원가입"}
+        />
       </form>
     </div>
   );
