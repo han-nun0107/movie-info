@@ -45,7 +45,7 @@ export default function Join() {
           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
           showError={submit && !formData.name}
         />
-        <LayoutIJoinLoginInputnput
+        <JoinLoginInput
           labelName="비밀번호"
           inputType="password"
           inputPlaceholder="영문과 숫자를 포함해 6자 이상 입력하세요"
@@ -67,16 +67,17 @@ export default function Join() {
           }
           showError={submit && formData.confirmPassword !== formData.password}
         />
-        <DetailButton
-          type={submit}
+        <button
+          type="submit"
           className="
         bg-gray-500 
         text-[#fafafb] 
           w-lg h-12 
           cursor-pointer 
         hover:bg-gray-600 active:bg-gray-800"
-          label={"회원가입"}
-        />
+        >
+          회원가입
+        </button>
       </form>
     </div>
   );

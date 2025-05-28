@@ -22,7 +22,7 @@ export const useLoginUserDbCheck = () => {
 
       const userId = user.id;
       const email = user.email;
-      const userName = user.user_metadata?.name || "이름 없음";
+      const name = user.user_metadata?.name || "이름 없음";
       const rawAvatar = user.user_metadata?.avatar_url || "";
       const avatar_url = rawAvatar.replace(/^http:\/\//, "https://");
 
@@ -30,7 +30,7 @@ export const useLoginUserDbCheck = () => {
       setUserInfo({
         id: userId,
         email,
-        userName,
+        name,
         avatar_url,
         isKakao,
       });
@@ -40,7 +40,7 @@ export const useLoginUserDbCheck = () => {
           {
             id: userId,
             email,
-            userName,
+            name,
             avatar_url,
           },
         ],
