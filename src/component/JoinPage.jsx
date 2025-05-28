@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { LayoutInput } from "./layout/layoutInput/JoinLoginInput";
+import { JoinLoginInput } from "./layout/layoutInput/JoinLoginInput";
 import { MovieContext } from "../context/movieContext";
 import { useSupabaseAuth } from "../auth";
 import { handleJoin } from "../utils/handle/handleJoin";
@@ -27,7 +27,7 @@ export default function Join() {
         }
         action=""
       >
-        <LayoutInput
+        <JoinLoginInput
           labelName="이메일"
           inputType="email"
           inputPlaceholder="xxxxxx@gmail.com 형식으로 작성해주세요"
@@ -36,7 +36,7 @@ export default function Join() {
           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
           showError={submit && !formData.email}
         />
-        <LayoutInput
+        <JoinLoginInput
           labelName="이름"
           inputType="text"
           inputPlaceholder="2~8자, 숫자, 한글, 영어만 사용"
@@ -45,7 +45,7 @@ export default function Join() {
           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
           showError={submit && !formData.name}
         />
-        <LayoutInput
+        <LayoutIJoinLoginInputnput
           labelName="비밀번호"
           inputType="password"
           inputPlaceholder="영문과 숫자를 포함해 6자 이상 입력하세요"
@@ -56,7 +56,7 @@ export default function Join() {
           }
           showError={submit && !isPassword(formData.password)}
         />
-        <LayoutInput
+        <JoinLoginInput
           labelName="비밀번호 확인"
           inputType="password"
           inputPlaceholder="위와 같은 비밀번호를 입력해주세요"

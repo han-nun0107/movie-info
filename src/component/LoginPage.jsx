@@ -5,8 +5,8 @@ import { useSupabaseAuth } from "../auth";
 import { handleLogin } from "../utils/handle/handleLogin";
 import KakaoLogin from "./anotherLogin/KakaoLogin";
 import GoogleLogin from "./anotherLogin/GoogleLogin";
-import { LayoutInput } from "./layout/layoutInput/JoinLoginInput";
 import { DetailButton } from "./button/Button";
+import { JoinLoginInput } from "./layout/layoutInput/JoinLoginInput";
 
 export default function Login() {
   const [formData, setFormData] = useState({ email: "", password: "" });
@@ -22,7 +22,7 @@ export default function Login() {
           handleLogin(e, { formData, setSubmit, login, setUserInfo, navigate })
         }
       >
-        <LayoutInput
+        <JoinLoginInput
           inputType="email"
           inputPlaceholder="xxxxxx@gmail.com 형식으로 작성해주세요"
           errorMassage="이메일 형식으로 작성해주세요"
@@ -30,7 +30,7 @@ export default function Login() {
           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
           showError={submit && !formData.email}
         />
-        <LayoutInput
+        <JoinLoginInput
           inputType="password"
           inputPlaceholder="영문 대문자/소문자 + 숫자의 조합 사용"
           errorMassage="비밀번호는 6자 이상이어야 합니다.."
