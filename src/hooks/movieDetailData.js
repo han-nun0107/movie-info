@@ -13,7 +13,7 @@ export function useMovieDetailData(setUserInfo, setIsLogin) {
         setUserInfo({
           id: user?.id,
           email: user?.email,
-          userName: user?.userName,
+          name: user?.name,
           avatar_url: user?.avatar_url,
         });
         setIsLogin(true);

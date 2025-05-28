@@ -27,13 +27,13 @@ export const handleJoin = async (
     return;
   }
   try {
-    const result = await signUp({ email, password, userName: name });
+    const result = await signUp({ email, password, name: name });
 
     if (result.user) {
       await supabase.from("user_table").insert({
         id: result.user.id,
         email: result.user.email,
-        userName: name,
+        name: name,
         avatar_url:
           "https://cdn.pixabay.com/photo/2016/03/31/19/56/avatar-1295396_1280.png",
       });

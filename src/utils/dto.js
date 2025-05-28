@@ -9,9 +9,7 @@ export const changeFromDto = ({ type, dto }) => {
         user: {
           id: dto?.user?.id,
           email: userInfo?.email,
-          userName: userInfo?.userName
-            ? userInfo.userName
-            : userInfo?.email?.split("@")[0],
+          name: userInfo?.name ? userInfo.name : userInfo?.email?.split("@")[0],
           avatar_url: userInfo?.avatar_url,
         },
       };

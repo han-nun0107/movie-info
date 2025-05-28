@@ -26,7 +26,7 @@ export default function MyPage() {
 
           {/* 사용자 이름 */}
           <p className="text-lg font-semibold text-[#fafaf8]">
-            이름: {userInfo?.userName}
+            이름: {userInfo?.name}
           </p>
 
           {/* 메뉴 */}

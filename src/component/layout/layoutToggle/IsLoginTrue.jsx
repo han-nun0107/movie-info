@@ -9,7 +9,7 @@ export default function IsLoginTrue() {
   return (
     <div className="flex flex-row items-center justify-evenly  w-full text-white gap-3">
       <p>toggle</p>
-      <p>{userInfo?.userName}</p>
+      <p>{userInfo?.name}</p>
       <div className="flex justify-center group relative">
         <img
           src={userInfo?.avatar_url}

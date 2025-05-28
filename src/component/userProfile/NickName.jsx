@@ -14,19 +14,19 @@ export default function NickName() {
     }
 
     const { error } = await supabase.auth.updateUser({
-      data: { userName: changeName },
+      data: { name: changeName },
     });
 
     if (error) {
       console.error("닉네임 변경 실패", error);
     }
-    setUserInfo({ ...userInfo, userName: changeName });
+    setUserInfo({ ...userInfo, name: changeName });
     setChangeName("");
   };
   return (
     <div className="flex flex-col items-center gap-3">
       <div>
-        <p className="text-3xl font-semibold">이름: {userInfo?.userName}</p>
+        <p className="text-3xl font-semibold">이름: {userInfo?.name}</p>
       </div>
       <div>
         <input
