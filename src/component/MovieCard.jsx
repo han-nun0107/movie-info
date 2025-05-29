@@ -40,7 +40,7 @@ export default function MovieCard({ title, poster_path, vote_average, id }) {
                 setIsLiked,
               })
             }
-            className="text-xl hover:scale-110 transition-transform duration-200"
+            className="text-xl cursor-pointer hover:scale-110 transition-transform duration-200"
           >
             {isLiked ? "❤️" : "🤍"}
           </button>
