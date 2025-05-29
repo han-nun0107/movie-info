@@ -18,9 +18,8 @@ export const handleLogin = async (
       setUserInfo(result?.user);
       navigate("/");
     }
-  } catch (err) {
+  } catch {
     toast.error("에러 발생", { toastId: "LoginError" });
-    console.log("에러 발생:", err);
   }
 };
 
@@ -34,7 +33,6 @@ export const handleLogout = async (
     const { error } = await supabase.auth.signOut();
     if (error) {
       toast.error("로그아웃 실패", { toastId: "LogoutFail" });
-      console.error("로그아웃 오류", error);
       return;
     }
     localStorage.clear();
@@ -43,8 +41,7 @@ export const handleLogout = async (
     setUserInfo(null);
     setIsLogin(false);
     navigate("/");
-  } catch (err) {
+  } catch {
     toast.error("로그아웃 중 오류", { toastId: "LogoutError" });
-    console.error("오류:", err);
   }
 };

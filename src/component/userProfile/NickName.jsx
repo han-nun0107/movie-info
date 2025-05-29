@@ -18,7 +18,7 @@ export default function NickName() {
     });
 
     if (error) {
-      console.error("닉네임 변경 실패", error);
+      toast.error("닉네입 변경 실패");
     }
     setUserInfo({ ...userInfo, name: changeName });
     setChangeName("");

@@ -7,6 +7,7 @@ import { MovieContext } from "./context/movieContext";
 import { useCheckAuth } from "./hooks/checkAuth";
 import { useInfinityScroll } from "./hooks/infinityScroll";
 import { useLoginUserDbCheck } from "./hooks/loginUserDbCheck";
+import { toast } from "react-toastify";
 
 function App() {
   const {
@@ -46,8 +47,8 @@ function App() {
       setMovies((prev) => [...prev, ...data.results]);
       setPageParams((prev) => [...prev, page]);
       setHasNextPage(data.page < data.total_pages);
-    } catch (err) {
-      console.error("영화 불러오기 실패:", err);
+    } catch {
+      toast.error("영화 불러오기 실패");
     } finally {
       setLoading(false);
     }

@@ -1,6 +1,7 @@
 import { useContext, useEffect } from "react";
 import { supabaseClient } from "../context";
 import { MovieContext } from "../context/movieContext";
+import { toast } from "react-toastify";
 
 export const useLoginUserDbCheck = () => {
   const { setUserInfo } = useContext(MovieContext);
@@ -48,7 +49,7 @@ export const useLoginUserDbCheck = () => {
           onConflict: "id",
         }
       );
-      if (error) console.error("user_table INSERT 실패:", error);
+      if (error) toast.error("user_table INSERT 실패");
     };
 
     syncUser();

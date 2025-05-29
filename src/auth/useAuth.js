@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import { useSupabase } from "../context";
 import {
   changeFromDto,
@@ -45,8 +46,8 @@ export const useAuth = () => {
           setItemToLocalStorage(USER_INFO_KEY.customKey, userInfo);
         }
         return userInfo;
-      } catch (error) {
-        console.error("에러:", error);
+      } catch {
+        toast.error("에러 발생");
       }
     }
   };

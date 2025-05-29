@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import supabase from "../../supabaseClient";
+import { toast } from "react-toastify";
 
 export function useMyPageMovies(userInfo, setLikeMovies) {
   useEffect(() => {
@@ -12,7 +13,7 @@ export function useMyPageMovies(userInfo, setLikeMovies) {
         .eq("user_id", userInfo.id);
 
       if (error) {
-        console.error("좋아요 영화 가져오기 실패", error);
+        toast.error("좋아요 영화 가져오기 실패");
         return;
       }
 

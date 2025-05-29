@@ -1,3 +1,5 @@
+import { toast } from "react-toastify";
+
 export const fetchSearchedMovies = async (query, token) => {
   try {
     const res = await fetch(
@@ -13,7 +15,7 @@ export const fetchSearchedMovies = async (query, token) => {
     );
     const data = await res.json();
     return data.results;
-  } catch (error) {
-    console.log("데이터 생성 실패", error);
+  } catch {
+    toast.error("데이터 생성 실패");
   }
 };

@@ -44,7 +44,7 @@ export const handleChangeImage = async (
     data: { avatar_url: publicUrl },
   });
   if (ChangeImgErr) {
-    console.error("이미지 변경 실패", ChangeImgErr);
+    toast.error("이미지 변경 실패");
   }
   setUserInfo({ ...userInfo, avatar_url: publicUrl });
   setChangeImg("");

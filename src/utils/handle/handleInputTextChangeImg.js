@@ -16,7 +16,6 @@ export const handleInputTextChangeImg = async (
   });
   if (error) {
     toast.error("이미지 변경 실패");
-    console.error("이미지 변경 실패", error);
   }
   toast.success("이미지 변경 성공");
   setUserInfo({ ...userInfo, avatar_url: changeImg });

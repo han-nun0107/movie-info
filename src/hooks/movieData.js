@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export function useAsyncMovieData(setMovies, token) {
   useEffect(() => {
@@ -23,8 +24,8 @@ export function useAsyncMovieData(setMovies, token) {
         } else {
           setMovies(data.results);
         }
-      } catch (error) {
-        console.log("영화 데이터 불러오기 실패", error);
+      } catch {
+        toast.error("영화 데이터를 불러오기 실패");
       }
     };
     fetchMovie();
@@ -57,8 +58,8 @@ export function useAsyncDetailMovieData(setDetailMovies, token) {
         } else {
           setDetailMovies(data);
         }
-      } catch (error) {
-        console.log("영화 디테일 페이지 불러오기 실패", error);
+      } catch {
+        toast.error("영화 디테일 페이지 불러오기 실패");
       }
     };
     fetchDetailMovie();
@@ -91,8 +92,8 @@ export function useAsyncMovieViedo(setMovieVideo, token) {
         } else {
           setMovieVideo(data);
         }
-      } catch (error) {
-        console.log("동영상 불러오기 실패", error);
+      } catch {
+        toast.error("동영상 불러오기 실패");
       }
     };
     fetchDetailMovie();

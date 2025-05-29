@@ -1,3 +1,5 @@
+import { toast } from "react-toastify";
+
 export const handleChangeName = async (
   changeName,
   setUserInfo,
@@ -10,7 +12,7 @@ export const handleChangeName = async (
   });
 
   if (updateAuthError) {
-    console.error("닉네임 변경 실패", updateAuthError);
+    toast.error("닉네임 변경 실패");
   }
   setUserInfo({ ...userInfo, name: changeName });
   setChangeName("");

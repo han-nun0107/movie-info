@@ -47,8 +47,7 @@ export const handleJoin = async (
     } else {
       toast.info("회원가입 실패", { toastId: "JoinFail" });
     }
-  } catch (err) {
+  } catch {
     toast.error("가입 실패", { toastId: "JoinError" });
-    console.log("가입 실패:", err);
   }
 };
