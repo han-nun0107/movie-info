@@ -15,12 +15,7 @@ jobs:
       - name: 의존성 설치
         run: npm i
 
-      - name: 환경변수 파일 만들기 (.env)
-        run: |
-          echo "VITE_SUPABASE_PROJECT_URL=${{ secrets.VITE_SUPABASE_PROJECT_URL }}" >> .env
-          echo "VITE_SUPABASE_ANON_KEY=${{ secrets.VITE_SUPABASE_ANON_KEY }}" >> .env
-
-      - name: 빌드하기
+      - name: 빌드하기2
         run: npm run build
 
       - name: AWS Resource에 접근할 수 있게 AWS 인증 설정
