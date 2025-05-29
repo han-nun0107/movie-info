@@ -8,8 +8,6 @@ export function useInfinityScroll() {
       const firstEntry = entries[0];
       if (firstEntry.isIntersecting) {
         setPage((prevPage) => prevPage + 1);
-      } else {
-        console.log("화면에 안보임");
       }
     });
 

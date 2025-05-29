@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 
 export default function MyPage() {
   const { userInfo, likeMovies, setLikeMovies } = useContext(MovieContext);
-  console.log(likeMovies);
 
   useUserInfo();
   useMyPageMovies(userInfo, setLikeMovies, likeMovies);

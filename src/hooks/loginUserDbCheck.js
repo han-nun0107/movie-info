@@ -49,7 +49,6 @@ export const useLoginUserDbCheck = () => {
         }
       );
       if (error) console.error("user_table INSERT 실패:", error);
-      else console.log("user_table INSERT 성공");
     };
 
     syncUser();

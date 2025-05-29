@@ -16,14 +16,10 @@ export default function MovieDetail() {
     setUserInfo,
     setIsLogin,
     setMovieVideo,
-    movieVideo,
   } = useContext(MovieContext);
   const score = detailMovies?.vote_average?.toFixed(2);
   const overview = detailMovies?.overview;
   const title = detailMovies?.title;
-  const trailer = movieVideo?.results[0]?.key;
-
-  console.log(trailer);
 
   useAsyncDetailMovieData(setDetailMovies, token);
   useAsyncMovieViedo(setMovieVideo, token);
