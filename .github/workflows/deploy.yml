@@ -18,10 +18,13 @@ jobs:
       - name: 빌드하기
         run: npm run build
 
-      - name: Repository 파일 출력하기
-        run: ls
-      - name: Debugging
+      - name: AWS Resource에 접근할 수 있게 AWS 인증 설정
+        uses: aws-actions/configure-aws-credentila@v4
+        with:
+          aws-region: ap-northeast-2
+          aws-access-key-id: ${{secrets.AWS_ACCESS_KEY_ID}}
+          aws-secret-access-key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
+
+      - name: S3 기존 파일들 전체 삭제
         run: |
-          ls
-          cd dist
-          ls
+          aws s3 rm --recursive s3://tmdb-movie-info
