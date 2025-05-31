@@ -46,7 +46,7 @@ export default function ModalDetail() {
               <div className="mt-8 mb-4">
                 {' '}
                 <iframe
-                  src={`http://www.youtube.com/embed/${trailer}`}
+                  src={`https://www.youtube.com/embed/${trailer}`}
                   frameBorder="0"
                   allowFullScreen
                   className="w-full h-72 rounded-lg aspect-video"
