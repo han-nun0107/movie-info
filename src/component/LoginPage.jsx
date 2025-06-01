@@ -48,7 +48,7 @@ export default function Login() {
         />
       </form>
 
-      <div className="flex flex-col sm:flex-row gap-3 mt-6 w-full justify-center items-center">
+      <div className="grid sm:flex-row gap-3 mt-6 w-full justify-center items-center">
         <KakaoLogin />
         <GoogleLogin />
       </div>
