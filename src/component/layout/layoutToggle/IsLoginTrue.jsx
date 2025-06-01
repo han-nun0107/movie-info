@@ -7,9 +7,11 @@ export default function IsLoginTrue() {
   const { userInfo, setIsLogin, navigate, setUserInfo } =
     useContext(MovieContext);
   return (
-    <div className="flex flex-row items-center justify-evenly  w-full text-white gap-3">
-      <p>toggle</p>
-      <p>{userInfo?.name}</p>
+    <div className="flex flex-row items-center justify-evenly w-full text-white gap-3">
+      {/* <p>toggle</p> */}
+      <p className="text-[12px] sm:text-[16px] md:text-[16px] lg:text-[16px]">
+        {userInfo?.name}
+      </p>
       <div className="flex justify-center group relative">
         <img
           src={userInfo?.avatar_url}

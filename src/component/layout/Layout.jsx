@@ -29,7 +29,7 @@ export default function Layout() {
               focus:outline-0"
             />
           </div>
-          <div className="flex gap-2">
+          <div>
             <RightLayout />
           </div>
         </nav>
