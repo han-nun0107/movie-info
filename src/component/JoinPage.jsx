@@ -20,12 +20,13 @@ export default function Join() {
     /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d!@#$%^&*()_+]{6,}$/.test(password);
 
   return (
-    <div className="flex flex-col justify-center items-center min-h-screen">
+    <div className="flex flex-col justify-center items-center min-h-screen px-4">
       <form
         onSubmit={(e) =>
           handleJoin(e, { setSubmit, formData, isPassword, signUp, navigate })
         }
         action=""
+        className="w-full max-w-lg"
       >
         <JoinLoginInput
           labelName="이메일"
@@ -72,7 +73,7 @@ export default function Join() {
           className="
         bg-gray-500 
         text-[#fafafb] 
-          w-lg h-12 
+          w-full h-12 
           cursor-pointer 
         hover:bg-gray-600 active:bg-gray-800"
         >

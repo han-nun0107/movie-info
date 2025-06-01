@@ -15,12 +15,13 @@ export default function Login() {
   const { login } = useSupabaseAuth();
 
   return (
-    <div className="flex flex-col justify-center items-center gap-15 min-h-screen">
-      <h1 className="text-[2rem] font-black">로그인</h1>
+    <div className="flex flex-col justify-center items-center min-h-screen px-4">
+      <h1 className="text-[1.5rem] sm:text-[2rem] font-black mb-6">로그인</h1>
       <form
         onSubmit={(e) =>
           handleLogin(e, { formData, setSubmit, login, setUserInfo, navigate })
         }
+        className="w-full max-w-lg flex flex-col gap-4"
       >
         <JoinLoginInput
           inputType="email"
@@ -42,22 +43,19 @@ export default function Login() {
         />
         <DetailButton
           type={submit}
-          className="
-        bg-gray-500 
-        text-[#fafafb] 
-          w-lg h-12 
-          cursor-pointer 
-        hover:bg-gray-600 active:bg-gray-800"
+          className="bg-gray-500 text-[#fafafb] h-12 cursor-pointer hover:bg-gray-600 active:bg-gray-800"
           label={"로그인"}
         />
       </form>
-      <div className="flex flex-col gap-3">
+
+      <div className="flex flex-col sm:flex-row gap-3 mt-6 w-full justify-center items-center">
         <KakaoLogin />
         <GoogleLogin />
       </div>
+
       <p className="text-center">
         오즈무비가 처음이신가요?
-        <span className="underline cursor-pointer">
+        <span className="cursor-pointer hover:underline text-blue-400 hover:text-blue-500 active:text-blue-600">
           <Link to="/join">간편 가입</Link>
         </span>
       </p>
