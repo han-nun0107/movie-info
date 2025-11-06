@@ -10,7 +10,7 @@ export default function IsLoginFalse() {
         로그인
       </Link>
       <Link to="/join" className={btnColor}>
-        회원가입
+        회원가입123123
       </Link>
     </div>
   );
