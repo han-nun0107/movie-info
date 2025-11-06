@@ -10,6 +10,15 @@
     "preview": "vite preview",
     "prepare": "husky install"
   },
+  "lint-staged": {
+    "src/**/*.{ts,tsx}": [
+      "npx eslint --fix",
+      "npx prettier --write"
+    ],
+    "*.{css,json,md}": [
+      "npx prettier --write"
+    ]
+  },
   "dependencies": {
     "@supabase/supabase-js": "^2.49.4",
     "@tailwindcss/vite": "^4.1.4",
