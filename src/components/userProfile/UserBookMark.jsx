@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { handleReset } from "../../utils/handle/handleReset";
 import { MovieContext } from "../../context/movieContext";
-import MovieCard from "../../component/MovieCard";
+import MovieCard from "@components/MovieCard.jsx";
 import { useMyPageMovies } from "../../hooks/mypageMovie";
 
 export default function UserBookMark() {

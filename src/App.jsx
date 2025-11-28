@@ -1,13 +1,15 @@
 import { useContext, useEffect } from "react";
-import MovieCard from "./component/MovieCard";
+import MovieCard from "./components/MovieCard";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import axios from "axios";
 
 import { MovieContext } from "./context/movieContext";
 import { useCheckAuth } from "./hooks/checkAuth";
 import { useInfinityScroll } from "./hooks/infinityScroll";
 import { useLoginUserDbCheck } from "./hooks/loginUserDbCheck";
 import { toast } from "react-toastify";
+import { AdminGuard } from "./components/AdminGuard";
 
 function App() {
   const {
@@ -34,21 +36,26 @@ function App() {
     if (pageParams.includes(page)) return;
     setLoading(true);
     try {
-      const response = await fetch(
-        `https://api.themoviedb.org/3/movie/popular?language=ko-kr&page=${page}`,
+      const response = await axios.get(
+        "https://api.themoviedb.org/3/movie/popular",
         {
+          params: {
+            language: "ko-kr",
+            page,
+          },
           headers: {
             accept: "application/json",
             Authorization: `Bearer ${token}`,
           },
         }
       );
-      const data = await response.json();
+
+      const data = response.data;
       setMovies((prev) => [...prev, ...data.results]);
       setPageParams((prev) => [...prev, page]);
       setHasNextPage(data.page < data.total_pages);
-    } catch {
-      toast.error("영화 불러오기 실패");
+    } catch (error) {
+      toast.error(`영화 불러오기 실패! ${error.message}`);
     } finally {
       setLoading(false);
     }
@@ -60,6 +67,9 @@ function App() {
 
   return (
     <div className="bg-black flex flex-wrap justify-center p-6 gap-6">
+      <AdminGuard>
+        <div className="text-[#fafaf8] text-2xl">관리자 페이지</div>
+      </AdminGuard>
       {movies
         ?.filter((movie) => movie.adult === false)
         .map((movie) => (
