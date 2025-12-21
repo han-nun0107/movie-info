@@ -1,8 +1,5 @@
 import { useContext, useEffect } from "react";
 import MovieCard from "./component/MovieCard";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-
 import { MovieContext } from "./context/movieContext";
 import { useCheckAuth } from "./hooks/checkAuth";
 import { useInfinityScroll } from "./hooks/infinityScroll";
